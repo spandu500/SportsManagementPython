@@ -1,6 +1,7 @@
 import sqlite3
 import tkinter as tk
 import datetime
+from shop.cart import *
 from tkinter import *
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
@@ -15,7 +16,12 @@ conn.execute(
     'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type INTEGER)')
 conn.execute(
     'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, username TEXT, password TEXT)')
+
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
+
+conn.execute(
+    'CREATE TABLE IF NOT EXISTS ShopStonks(Date TEXT, ItemName TEXT, ItemDesc TEXT, Stocks INTEGER)')
+
 
 root = tk.Tk()
 root.geometry("900x600+90+50")
@@ -66,6 +72,13 @@ def ecoach():
     mngteam.geometry("900x800+90+50")
     mngteam.title("Manage Team")
 
+# def shoppe():
+#     shop = tk.Toplevel()
+#     shop.geometry("900x800+90+50")
+#     shop.title("Shop Items")
+#     cart()
+
+
 
 def Booking_History():
     hist = tk.Toplevel()
@@ -84,8 +97,8 @@ def Booking_History():
 
     Booked_Location = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
                        "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                       "GROUND IT UP : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                       "SKYARCH GROUND : ADDRESS :- SKYARCH GROUND NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
+                       "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
+                       "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
                        "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
                        "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
                        ]
@@ -176,8 +189,8 @@ def Book_now():
     drop1.place(x=540, y=300, height=15, width=20)
     optNameAddress = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
                       "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                      "GROUND IT UP : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                      "SKYARCH GROUND : ADDRESS :- SKYARCH GROUND NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
+                      "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
+                      "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
                       "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
                       "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
                       ]
@@ -241,14 +254,14 @@ def bookingPage2():
     nextlvl.title("AVAILABLE GROUNDS")
     nextlvl.configure(bg="white")
     frame7 = Frame(nextlvl, bg="white").place(
-        x=100, y=50, height=700, width=750)
+        x=100, y=50, height=600, width=650)
 
     # 4th Ground
-    d1 = Label(nextlvl, text="SKYARCH GROUND", font="tr 15",
+    d1 = Label(nextlvl, text="Bhumiputra Maidan", font="tr 15",
                fg="black", bg="white").place(x=200, y=120, width=300)
     d2 = Label(nextlvl, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=150)
-    d3 = Label(nextlvl, text="SKYARCH GROUND NEAR RAM MANDIR ",
+    d3 = Label(nextlvl, text="Bhumiputra Maidan NEAR RAM MANDIR ",
                font="tr 10", fg="black", bg="white").place(x=190, y=150)
     d4 = Label(nextlvl, text="DOMBIVILI , Thane, Maharashtra 400612",
                font="tr 10", fg="black", bg="white").place(x=190, y=170)
@@ -302,7 +315,7 @@ def equipmentShop():
     equip = tk.Toplevel()
     equip.geometry("900x900+100+100")
     equip.title("BROWSE SHOPS")
-    frame2 = Frame(equip, bg="white").place(x=100, y=50, height=700, width=750)
+    frame2 = Frame(equip, bg="white").place(x=100, y=50, height=600, width=650)
 
     # 1st Shop
     a1 = Label(equip, text="Prestige Sports ", font="tr 15",
@@ -318,7 +331,7 @@ def equipmentShop():
     a6 = Label(equip, text="8852023645", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=200)
     b1 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=Book_now)
+                fg="black", bd=1, bg="#41B3A3", command=ShoppingCart)
     b1.place(x=300, y=250)
 
     # 2nd Shop
@@ -335,7 +348,7 @@ def equipmentShop():
     b16 = Label(equip, text="8254682025", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=Book_now)
+                fg="black", bd=1, bg="#41B3A3", command=ShoppingCart)
     b2.place(x=300, y=420)
 
 
@@ -344,7 +357,7 @@ def bookingPage1():
     book.geometry("900x900+100+100")
     book.title("AVAILABLE GROUNDS")
     book.configure(bg="white")
-    frame2 = Frame(book, bg="white").place(x=100, y=50, height=700, width=750)
+    frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
 
     # 1st turf
     a1 = Label(book, text="SmashUp Ground ", font="tr 15",
@@ -381,7 +394,7 @@ def bookingPage1():
     b2.place(x=300, y=420)
 
     # 3rd Ground
-    c1 = Label(book, text="GROUND IT UP", font="tr 15", fg="black",
+    c1 = Label(book, text="Dribble Football Turf", font="tr 15", fg="black",
                bg="white").place(x=200, y=500, width=300)
     c2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=550)
@@ -453,15 +466,16 @@ def registerinfo():
     reg.title("REGISTERATION")
     reg.resizable(False, False)
 
-    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
-    headingFrame1.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
-    headingLabel = Label(headingFrame1, text="ADD NEW USER",
-                         bg='black', fg='white', font=('tr', 20))
-    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
-
     frame2 = Frame(reg, bg="white").place(x=180, y=80, height=600, width=600)
     Label(reg, text="REGISTRATION", font="tr 20 bold",
           fg="Blue", anchor="c").place(x=350, y=150)
+
+    headingFrame2 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame2.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
+    headingLabelr = Label(headingFrame2, text="ADD NEW USER",
+                         bg='black', fg='white', font=('tr', 20))
+    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)
+    
     Name = Label(reg, text="NAME", fg="black", bg="white",
                  font="Bold 10").place(x=250, y=200)
     Uname = Label(reg, text="USERNAME", fg="black", bg="white",
@@ -487,6 +501,14 @@ def registerinfo():
     RPhn.place(x=400, y=400)
     REmail = tk.Entry(reg)
     REmail.place(x=400, y=450)
+    # Rtype = tk.Combobox(text = "UserType", textvariable=type, values='1,2,3')
+    # Rtype.place(x=400, y=550) 
+# #l1 = Label(UI_frame, text="Algorithm: ", bg=WHITE)
+# l1.grid(row=0, column=0, padx=10, pady=5, sticky=W)
+# algo_menu = ttk.Combobox(
+#     UI_frame, textvariable=algorithm_name, values=algo_list)
+# algo_menu.grid(row=0, column=1, padx=5, pady=5)
+# algo_menu.current(0)
 
     def registerinfo1():
         print("registerinfo1")
@@ -497,8 +519,9 @@ def registerinfo():
         RCpas1 = RPas.get()
         RPhn1 = RPhn.get()
         REmail1 = REmail.get()
+        # Rtype = RType.get()
         print("start")
-        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ) "
+        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email , Type ) "
                      "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1))
         # conn.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
         print("done")
