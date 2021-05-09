@@ -2,6 +2,7 @@ import sqlite3
 import tkinter as tk
 import datetime
 from shop.cart import *
+from football_league.main import *
 from tkinter import *
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
@@ -57,8 +58,8 @@ headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
 frame1 = Frame(root, bg="white").place(x=300, y=200, height=200, width=300)
 # Label(root, text="SPORTS MANAGEMENT SYSTEM ", font="tr 20 bold",fg="BLUE", bd=1, anchor="c").place(x=250, y=200)
-USER = Label(root, text="USER_NAME", fg="Blue", bg="white").place(x=340, y=250)
-PASS = Label(root, text="PASSWORD", fg="Blue", bg="white").place(x=340, y=300)
+USER = Label(root, text="USER_NAME", fg="Black", bg="white").place(x=340, y=250)
+PASS = Label(root, text="PASSWORD", fg="Black", bg="white").place(x=340, y=300)
 user_verify = StringVar()
 pass_verify = StringVar()
 username = tk.Entry(root, textvariable=user_verify)
@@ -68,9 +69,10 @@ password.place(x=450, y=300)
 
 
 def ecoach():
-    mngteam = tk.Toplevel()
-    mngteam.geometry("900x800+90+50")
-    mngteam.title("Manage Team")
+    Application()
+    # mngteam = tk.Toplevel()
+    # mngteam.geometry("900x800+90+50")
+    # mngteam.title("Manage Team")
 
 # def shoppe():
 #     shop = tk.Toplevel()
@@ -101,7 +103,7 @@ def Booking_History():
                        "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
                        "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
                        "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
-                       ]
+                       ] #Idhar locations change kar...
 
     Booked_NameAddress = StringVar()
     Booked_NameAddress.set(Booked_Location[0])
@@ -474,7 +476,8 @@ def registerinfo():
     headingFrame2.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
     headingLabelr = Label(headingFrame2, text="ADD NEW USER",
                          bg='black', fg='white', font=('tr', 20))
-    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)
+    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)    #ye idhar change kiya fir bhi main window me change hota hai
+                                                                    #window close nahi hote automatically
     
     Name = Label(reg, text="NAME", fg="black", bg="white",
                  font="Bold 10").place(x=250, y=200)
