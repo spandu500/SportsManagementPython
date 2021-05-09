@@ -14,10 +14,10 @@ conn.cursor()
 conn.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
 
 conn.execute(
-    'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT)')
+    'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type INTEGER)')
 conn.execute(
     'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, username TEXT, password TEXT)')
-insert_command = """INSERT OR IGNORE INTO login(datestamp, username, password) VALUES('%s', '%s', '%s');"""
+insert_command = """INSERT OR IGNORE INTO login(date, username, password) VALUES('%s', '%s', '%s');"""
 
 root = tk.Tk()
 root.geometry("900x600+90+50")
