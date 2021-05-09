@@ -15,7 +15,7 @@ conn.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHO
 conn.execute(
     'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type INTEGER)')
 conn.execute(
-    'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, username TEXT, password TEXT)')
+    'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
 
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
 
@@ -521,7 +521,7 @@ def registerinfo():
         REmail1 = REmail.get()
         # Rtype = RType.get()
         print("start")
-        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email , Type ) "
+        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ) "
                      "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1))
         # conn.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
         print("done")
