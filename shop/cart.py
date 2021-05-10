@@ -128,11 +128,11 @@ def getList(self):
         items+= item + "\n"
     return items
 
-def main():
+def mainshop():
     root = Tk()
     app = ShoppingCart()
     root.configure(background="white")
     root.mainloop()
 
 if __name__ == '__main__':
-    main()
+    mainshop()
