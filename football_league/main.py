@@ -6,8 +6,8 @@ import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
 import pygubu
-import team
-from match import Match
+from football_league.team import team
+from football_league.match import Match
 import tkinter.messagebox as msgbox
 
 

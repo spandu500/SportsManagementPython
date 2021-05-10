@@ -272,19 +272,11 @@ def Booking_History():
             b.place(x=150, y=290)
             conn.commit()
             conn.execute("SELECT * FROM student limit 0,10")
-# i=0
-# for student in my_conn:
-#     for j in range(len(student)):
-#         e = Entry(my_w, width=10, fg='blue')
-#         e.grid(row=i, column=j)
-#         e.insert(END, student[j])
-#     i=i+1
-# my_w.mainloop()
         else:
-            messagebox.showinfo(
-                'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
-    result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
-                    bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+                messagebox.showinfo(
+                    'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
+                result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
+                        bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
 
 
 def Book_now():
