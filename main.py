@@ -1,7 +1,6 @@
 import sqlite3
 import tkinter as tk
 import datetime
-from shop.cart import *
 from football_league.main import *
 from tkinter import *
 from PIL import ImageTk, Image  # PIL -> Pillow

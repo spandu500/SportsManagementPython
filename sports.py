@@ -25,8 +25,8 @@ conn.execute(
     'CREATE TABLE IF NOT EXISTS ShopStonks(Date TEXT, ItemName TEXT, ItemDesc TEXT, Stocks INTEGER)')
 
 # Enter Table Names here
-equipmentTable = "equipment" # equipment Table
-issueTable = "equipment issues"
+equipmentTable = "equipent"  # equipment Table
+issueTable = "equipment_issued"
 
 root = tk.Tk()
 root.geometry("900x600")
@@ -34,8 +34,8 @@ root.configure(bg="white")
 root.title("LOGIN PAGE")
 root.resizable(False, False)
 
-#List To store all Equipment IDs
-alleid = [] 
+# List To store all Equipment IDs
+alleid = []
 
 same = True
 n = 0.25
@@ -63,8 +63,10 @@ headingLabel = Label(headingFrame1, text="WELCOME TO\nSPORTS MANAGEMENT SYSTEM",
 headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
 frame1 = Frame(root, bg="white").place(x=300, y=200, height=200, width=300)
-Label(root, text="By Anuj, Mitesh, Kunal & Anushka", font="tr 13 bold",fg="BLACK", bd=1, anchor="c").place(x=300, y=450)
-USER = Label(root, text="USER_NAME", fg="Black", bg="white").place(x=340, y=250)
+Label(root, text="By Anuj, Mitesh, Kunal & Anushka", font="tr 13 bold",
+      fg="BLACK", bd=1, anchor="c").place(x=300, y=450)
+USER = Label(root, text="USER_NAME", fg="Black",
+             bg="white").place(x=340, y=250)
 PASS = Label(root, text="PASSWORD", fg="Black", bg="white").place(x=340, y=300)
 user_verify = StringVar()
 pass_verify = StringVar()
@@ -73,9 +75,11 @@ username.place(x=450, y=250)
 password = tk.Entry(root, textvariable=pass_verify, show="*")
 password.place(x=450, y=300)
 
+
 def Back_page():
     messagebox.showinfo("BACK", "Proceeding to Home Page")
     back = logininfo()
+
 
 def logininfo():
 
@@ -95,43 +99,53 @@ def logininfo():
     else:
         messagebox.showerror('Oops!', 'Username or Password is incorrect.')
 
+
 def loggedin():
-        messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!!")
-        window2 = Toplevel()
-        window2.geometry("900x600")
-        window2.configure(bg="orange")
-        window2.title("HOME PAGE")
-        window2.resizable(False, False)
-        headingFrame1 = Frame(window2, bg="#FFBB00", bd=5)
-        headingFrame1.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
-        headingLabel = Label(headingFrame1, text="SELECT AN OPTION",
-                             bg='black', fg='white', font=('tr', 20))
-        headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
+    messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!!")
+    window2 = Toplevel()
+    window2.geometry("1000x1000")
+    window2.configure(bg="orange")
+    window2.title("HOME PAGE")
+    window2.resizable(False, False)
+    headingFrame1 = Frame(window2, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
+    headingLabel = Label(headingFrame1, text="SELECT AN OPTION",
+                         bg='black', fg='white', font=('tr', 20))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
-        btn1 = Button(window2,text="Add Equipment Details",bg='black', fg='white', command=addequipment)
-        btn1.place(relx=0.28,rely=0.3, relwidth=0.45,relheight=0.1)
-            
-        btn2 = Button(window2,text="Remove Equipment from Inventory",bg='black', fg='white', command=delete)
-        btn2.place(relx=0.28,rely=0.4, relwidth=0.45,relheight=0.1)
-            
-        btn3 = Button(window2,text="View Inventory",bg='black', fg='white', command=View)
-        btn3.place(relx=0.28,rely=0.5, relwidth=0.45,relheight=0.1)
-            
-        btn4 = Button(window2,text="Issue Items to Students",bg='black', fg='white', command = issueBook)
-        btn4.place(relx=0.28,rely=0.6, relwidth=0.45,relheight=0.1)
-            
-        btn5 = Button(window2,text="Return Book",bg='black', fg='white', command = returnBook)
-        btn5.place(relx=0.28,rely=0.7, relwidth=0.45,relheight=0.1)
+    btn1 = Button(window2, text="Add Equipment Details",
+                  bg='black', fg='white', command=addequipment)
+    btn1.place(relx=0.28, rely=0.3, relwidth=0.45, relheight=0.1)
 
-        # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
-        # coach.place(x=150, y=100, width=600)
+    btn2 = Button(window2, text="Remove Equipment from Inventory",
+                  bg='black', fg='white', command=delete)
+    btn2.place(relx=0.28, rely=0.4, relwidth=0.45, relheight=0.1)
 
-        btn6 = Button(window2, text="Book Turf/PlayGround", bg='black', fg="white", bd=4, command=bookingPage1)
-        btn6.place(relx=0.28,rely=0.8, relwidth=0.45,relheight=0.1)
-        btn7 = Button(window2, text="SHOP EQUIPMENTS", fg="black", bd=4, command=equipmentShop)
-        btn7.place(relx=0.28,rely=0.9, relwidth=0.45,relheight=0.1)
-        btn8 = Button(window2, text="BOOKING HISTORY", fg="black", bd=4, command=Booking_History)
-        btn8.place(relx=0.28,rely=1.0, relwidth=0.45,relheight=0.1)
+    btn3 = Button(window2, text="View Inventory",
+                  bg='black', fg='white', command=View)
+    btn3.place(relx=0.28, rely=0.5, relwidth=0.45, relheight=0.1)
+
+    btn4 = Button(window2, text="Issue Items to Students",
+                  bg='black', fg='white', command=issueBook)
+    btn4.place(relx=0.28, rely=0.6, relwidth=0.45, relheight=0.1)
+
+    btn5 = Button(window2, text="Return Equipment", bg='black',
+                  fg='white', command=returnBook)
+    btn5.place(relx=0.28, rely=0.7, relwidth=0.45, relheight=0.1)
+
+    # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
+    # coach.place(x=150, y=100, width=600)
+
+    btn6 = Button(window2, text="Book Turf/PlayGround",
+                  bg='black', fg="white", bd=4, command=bookingPage1)
+    btn6.place(relx=0.28, rely=0.8, relwidth=0.45, relheight=0.1)
+    btn7 = Button(window2, text="Shop Equipments",
+                  bg="black", fg = 'white', bd=4, command=equipmentShop)
+    btn7.place(relx=0.28, rely=0.9, relwidth=0.45, relheight=0.1)
+    btn8 = Button(window2, text="Ground Booking History",
+                  bg="black", fg='white', bd=4, command=Booking_History)
+    btn8.place(relx=0.28, rely=1.0, relwidth=0.45, relheight=0.1)
+
 
 def match_info():
     # object of tkinter
@@ -140,9 +154,9 @@ def match_info():
     master.configure(bg='light grey')
 
     def cricket_info():
-        
+
         try:
-            match = sports.get_match(sports.CRICKET, e1.get() , e2.get())
+            match = sports.get_match(sports.CRICKET, e1.get(), e2.get())
             date.set(match.match_date)
             time.set(match.match_time)
             league.set(match.league)
@@ -155,40 +169,46 @@ def match_info():
             messagebox.showerror("showerror", "No match found")
 
     # Variable Classes in tkinter
-    date = StringVar();
-    time = StringVar();
-    league = StringVar();
-    team1 = StringVar();
-    team2 = StringVar();
-    team1_score = StringVar();
-    team2_score = StringVar();
-    link = StringVar();
+    date = StringVar()
+    time = StringVar()
+    league = StringVar()
+    team1 = StringVar()
+    team2 = StringVar()
+    team1_score = StringVar()
+    team2_score = StringVar()
+    link = StringVar()
 
     # Creating label for each information
     # name using widget Label
-    Label(master, text="Team 1 :" , bg = "light grey").grid(row=0, sticky=W)
-    Label(master, text="Team 2 :" , bg = "light grey").grid(row=1, sticky=W)
-    Label(master, text="Date :" , bg = "light grey").grid(row=2, sticky=W)
-    Label(master, text="Time :", bg = "light grey").grid(row=3, sticky=W)
-    Label(master, text="League :", bg = "light grey").grid(row=4, sticky=W)
-    Label(master, text="Team 1 :", bg = "light grey").grid(row=5, sticky=W)
-    Label(master, text="Team 2 :", bg = "light grey").grid(row=6, sticky=W)
-    Label(master, text="Team 1 score :", bg = "light grey").grid(row=7, sticky=W)
-    Label(master, text="Team 2 score :", bg = "light grey").grid(row=8, sticky=W)
-    Label(master, text="Link :", bg = "light grey").grid(row=9, sticky=W)
-
+    Label(master, text="Team 1 :", bg="light grey").grid(row=0, sticky=W)
+    Label(master, text="Team 2 :", bg="light grey").grid(row=1, sticky=W)
+    Label(master, text="Date :", bg="light grey").grid(row=2, sticky=W)
+    Label(master, text="Time :", bg="light grey").grid(row=3, sticky=W)
+    Label(master, text="League :", bg="light grey").grid(row=4, sticky=W)
+    Label(master, text="Team 1 :", bg="light grey").grid(row=5, sticky=W)
+    Label(master, text="Team 2 :", bg="light grey").grid(row=6, sticky=W)
+    Label(master, text="Team 1 score :", bg="light grey").grid(row=7, sticky=W)
+    Label(master, text="Team 2 score :", bg="light grey").grid(row=8, sticky=W)
+    Label(master, text="Link :", bg="light grey").grid(row=9, sticky=W)
 
     # Creating lebel for class variable
     # name using widget Entry
-    Label(master, text="", textvariable= date ,bg = "light grey").grid(row=2,column=1, sticky=W)
-    Label(master, text="", textvariable= time ,bg = "light grey").grid(row=3,column=1, sticky=W)
-    Label(master, text="", textvariable= league ,bg = "light grey").grid(row=4,column=1, sticky=W)
-    Label(master, text="", textvariable= team1 ,bg = "light grey").grid(row=5,column=1, sticky=W)
-    Label(master, text="", textvariable= team2 ,bg = "light grey").grid(row=6,column=1, sticky=W)
-    Label(master, text="", textvariable= team1_score ,bg = "light grey").grid(row=7,column=1, sticky=W)
-    Label(master, text="", textvariable= team2_score ,bg = "light grey").grid(row=8,column=1, sticky=W)
-    Label(master, text="", textvariable= link ,bg = "light grey").grid(row=9,column=1, sticky=W)
-
+    Label(master, text="", textvariable=date,
+          bg="light grey").grid(row=2, column=1, sticky=W)
+    Label(master, text="", textvariable=time,
+          bg="light grey").grid(row=3, column=1, sticky=W)
+    Label(master, text="", textvariable=league,
+          bg="light grey").grid(row=4, column=1, sticky=W)
+    Label(master, text="", textvariable=team1,
+          bg="light grey").grid(row=5, column=1, sticky=W)
+    Label(master, text="", textvariable=team2,
+          bg="light grey").grid(row=6, column=1, sticky=W)
+    Label(master, text="", textvariable=team1_score,
+          bg="light grey").grid(row=7, column=1, sticky=W)
+    Label(master, text="", textvariable=team2_score,
+          bg="light grey").grid(row=8, column=1, sticky=W)
+    Label(master, text="", textvariable=link,
+          bg="light grey").grid(row=9, column=1, sticky=W)
 
     e1 = Entry(master)
     e1.grid(row=0, column=1)
@@ -198,10 +218,11 @@ def match_info():
 
     # creating a button using the widget
     # Button that will call the submit function
-    b = Button(master, text="Show", command=cricket_info )
-    b.grid(row=0, column=2,columnspan=2, rowspan=2,padx=5, pady=5)
+    b = Button(master, text="Show", command=cricket_info)
+    b.grid(row=0, column=2, columnspan=2, rowspan=2, padx=5, pady=5)
 
     mainloop()
+
 
 def Booking_History():
     hist = tk.Toplevel()
@@ -224,7 +245,7 @@ def Booking_History():
                        "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
                        "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
                        "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
-                       ] #Idhar locations change kar...
+                       ]  # Idhar locations change kar...
 
     Booked_NameAddress = StringVar()
     Booked_NameAddress.set(Booked_Location[0])
@@ -269,10 +290,11 @@ def Booking_History():
             conn.commit()
             conn.execute("SELECT * FROM student limit 0,10")
         else:
-                messagebox.showinfo(
-                    'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
-                result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
-                        bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+            messagebox.showinfo(
+                'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
+            result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
+                            bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+
 
 def Book_now():
     nw = tk.Toplevel()
@@ -351,19 +373,20 @@ def Book_now():
     btn3 = Button(nw, text="BACK", font="tr 10", fg="black", bd=1,
                   bg="#c1bdfd", command=bookingPage1).place(x=460, y=400)
 
+
 def bookingPage1():
     book = tk.Toplevel()
-    book.geometry("900x900+100+100")
+    book.geometry("600x650")
     book.title("AVAILABLE GROUNDS")
     book.configure(bg="white")
     frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
 
     # 1st turf
-    a1 = Label(book, text="SmashUp Ground ", font="tr 15",
+    a1 = Label(book, text="D.S Sports Ground ", font="tr 15",
                fg="black", bg="white").place(x=200, y=120, width=300)
     a2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=150)
-    a3 = Label(book, text="K.B. Patil School, Sector 8,",
+    a3 = Label(book, text="A.C. Patil School, Sector 8,",
                font="tr 10", fg="black", bg="white").place(x=190, y=150)
     a4 = Label(book, text="Near Reena Mokal Hospital, Kandivali West, Mumbai, Maharashtra 400067",
                font="tr 10", fg="black", bg="white").place(x=190, y=170)
@@ -414,9 +437,10 @@ def bookingPage1():
     # Next = Button(book, text="Next", font="tr 10", fg="black",
     #               bg="#41B3A3", command=bookingPage2).place(x=700, y=620)
 
+
 def equipmentShop():
     equip = tk.Toplevel()
-    equip.geometry("900x900+100+100")
+    equip.geometry("700x700")
     equip.title("BROWSE SHOPS")
     frame2 = Frame(equip, bg="white").place(x=100, y=50, height=600, width=650)
 
@@ -434,13 +458,13 @@ def equipmentShop():
     a6 = Label(equip, text="8852023645", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=200)
     b1 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=cart)
+                fg="black", bd=1, bg="#41B3A3", command=cart())
     b1.place(x=300, y=250)
 
     # 2nd Shop
     b11 = Label(equip, text="Total Sports And Fitness", font="tr 15",
                 fg="black", bg="white").place(x=200, y=300, width=300)
-    b12 = Label(equip, text="ADDRESS:", font="tr 10",
+    b12 = Label(equip, text="ADDRESS:", font="tr 20",
                 fg="black", bg="white").place(x=120, y=350)
     b13 = Label(equip, text="Shop 9, Plot-26,  opp Sai Udyaan",
                 font="tr 10", fg="black", bg="white").place(x=190, y=350)
@@ -451,8 +475,27 @@ def equipmentShop():
     b16 = Label(equip, text="8254682025", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=cart)
+                fg="black", bd=1, bg="#41B3A3", command=cart())
     b2.place(x=300, y=420)
+
+
+    # 3rd Shop
+    b11 = Label(equip, text="Shakti Sports And Fitness", font="tr 15",
+                fg="black", bg="white").place(x=200, y=300, width=300)
+    b12 = Label(equip, text="ADDRESS:", font="tr 10",
+                fg="black", bg="white").place(x=120, y=350)
+    b13 = Label(equip, text="Shop 91, Plot-6,  opp Rk Colony",
+                font="tr 10", fg="black", bg="white").place(x=190, y=350)
+    b14 = Label(equip, text="Kharghar, Raigad, Maharashtra 400612",
+                font="tr 10", fg="black", bg="white").place(x=190, y=370)
+    b15 = Label(equip, text="Phone:", font="tr 10",
+                fg="black", bg="White").place(x=120, y=390)
+    b16 = Label(equip, text="825468545", font="tr 10 ",
+                fg="black", bg="White").place(x=180, y=390)
+    b2 = Button(equip, text="Shop Now", font="tr 10",
+                fg="black", bd=1, bg="#41B3A3", command=cart())
+    b2.place(x=300, y=420)
+
 
 def cart(self):
     def press():
@@ -460,43 +503,42 @@ def cart(self):
         sc.insert(tk.END, getList(self))
 
     def addpress():
-        self.adding=not self.adding
-        if self.adding==True:
+        self.adding = not self.adding
+        if self.adding == True:
             ar['text'] = "Click to Start \r Removing"
             press()
         else:
-            ar['text']="Click to Start \r Adding"
+            ar['text'] = "Click to Start \r Adding"
             press()
 
     def shop(s):
-        if(self.adding==True):
+        if(self.adding == True):
             self.shoppinglist.append(s)
         else:
             if s in self.shoppinglist:
                 self.shoppinglist.remove(s)
-                
 
     self.master.title("Shop Items")
 
-    spike = tk.Button(self, command=lambda:[shop("Spike Shoes"),press()])
+    spike = tk.Button(self, command=lambda: [shop("Spike Shoes"), press()])
     image = ImageTk.PhotoImage(file="shop/spike.jpg")
     spike.config(image=image, width=200, height=200, bg="white")
     spike.image = image
     spike.grid(row=2, column=1)
 
-    ball = tk.Button(self, command=lambda:[shop("Ball 1"),press()])
+    ball = tk.Button(self, command=lambda: [shop("Ball 1"), press()])
     image = ImageTk.PhotoImage(file="shop/ball.jpg")
     ball.config(image=image, width=200, height=200, bg="white")
     ball.image = image
     ball.grid(row=2, column=2)
 
-    bat = tk.Button(self, command=lambda: [shop("Bat"),press()])
+    bat = tk.Button(self, command=lambda: [shop("Bat"), press()])
     image = ImageTk.PhotoImage(file="shop/bat.jpg")
     bat.config(image=image, width=200, height=200, bg="white")
     bat.image = image
     bat.grid(row=2, column=3)
 
-    cones = tk.Button(self, command=lambda:[shop("Cones"),press()])
+    cones = tk.Button(self, command=lambda: [shop("Cones"), press()])
     image = ImageTk.PhotoImage(file="shop/cones.jpg")
     cones.config(image=image, width=200, height=200, bg="white")
     cones.image = image
@@ -506,7 +548,7 @@ def cart(self):
     image = ImageTk.PhotoImage(file="shop/gloves.jpg")
     gloves.config(image=image, width=200, height=200, bg="white")
     gloves.image = image
-    gloves.grid(row=3, column=1)   
+    gloves.grid(row=3, column=1)
 
     football = tk.Button(self, command=lambda: [shop("Football"), press()])
     image = ImageTk.PhotoImage(file="shop/football.jpg")
@@ -554,112 +596,118 @@ def cart(self):
     sc.insert(tk.END, getList(self))
     sc.grid(row=2, column=5)
 
-    ar = tk.Button(self, text="Click to start \r Removing", bg="darkblue", fg="white", font='Helvetica 18 bold', width=15, height=5, command=lambda: [addpress()])
+    ar = tk.Button(self, text="Click to start \r Removing", bg="darkblue", fg="white",
+                   font='Helvetica 18 bold', width=15, height=5, command=lambda: [addpress()])
     ar.grid(row=3, column=5)
 
-    quit = tk.Button(self, text="QUIT", fg="white", bg="red", font='Helvetica 18 bold', command=self.master.destroy, width=10, height=5)
+    quit = tk.Button(self, text="QUIT", fg="white", bg="red",
+                     font='Helvetica 18 bold', command=self.master.destroy, width=10, height=5)
     quit.grid(row=4, column=5)
 
     self.pack()
 
 
 def getList(self):
-    items='Your Shopping Cart Contains: \n'
+    items = 'Your Shopping Cart Contains: \n'
     for item in self.shoppinglist:
-        items+= item + "\n"
+        items += item + "\n"
     return items
 
 
-
 def equipmentRegister():
-    
+
     eid = equipmentInfo1.get()
     title = equipmentInfo2.get()
     author = equipmentInfo3.get()
     status = equipmentInfo4.get()
     status = status.lower()
-    
-    insertequipments = "insert into "+equipmentTable+" values('"+eid+"','"+title+"','"+author+"','"+status+"')"
+
+    insertequipments = "insert into "+equipmentTable + \
+        " values('"+eid+"','"+title+"','"+author+"','"+status+"')"
     try:
         conn.execute(insertequipments)
         conn.commit()
-        messagebox.showinfo('Success',"equipment added successfully")
+        messagebox.showinfo('Success', "equipment added successfully")
     except:
-        messagebox.showinfo("Error","Can't add data into Database")
-    
+        messagebox.showinfo("Error", "Can't add data into Database")
+
     print(eid)
     print(title)
     print(author)
     print(status)
 
-
     root.destroy()
 
-def addequipment(): 
-    
-    global equipmentInfo1,equipmentInfo2,equipmentInfo3,equipmentInfo4,Canvas1,equipmentTable,root
-    
+
+def addequipment():
+
+    global equipmentInfo1, equipmentInfo2, equipmentInfo3, equipmentInfo4, Canvas1, equipmentTable, root
+
     root = Tk()
     root.title("Inventory")
-    root.minsize(width=400,height=400)
+    root.minsize(width=400, height=400)
     root.geometry("600x500")
 
     Canvas1 = Canvas(root)
-    
+
     Canvas1.config(bg="#ff6e40")
-    Canvas1.pack(expand=True,fill=BOTH)
-        
-    headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
-    headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
+    Canvas1.pack(expand=True, fill=BOTH)
 
-    headingLabel = Label(headingFrame1, text="Add equipments", bg='black', fg='white', font=('tr',15))
-    headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
+    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
+    headingLabel = Label(headingFrame1, text="Add equipments",
+                         bg='black', fg='white', font=('tr', 15))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
-    labelFrame = Frame(root,bg='black')
-    labelFrame.place(relx=0.1,rely=0.4,relwidth=0.8,relheight=0.4)
-        
+    labelFrame = Frame(root, bg='black')
+    labelFrame.place(relx=0.1, rely=0.4, relwidth=0.8, relheight=0.4)
+
     # equipment ID
-    lb1 = Label(labelFrame,text="equipment ID : ", bg='black', fg='white')
-    lb1.place(relx=0.05,rely=0.2, relheight=0.08)
-        
+    lb1 = Label(labelFrame, text="equipment ID : ", bg='black', fg='white')
+    lb1.place(relx=0.05, rely=0.2, relheight=0.08)
+
     equipmentInfo1 = Entry(labelFrame)
-    equipmentInfo1.place(relx=0.3,rely=0.2, relwidth=0.62, relheight=0.08)
-        
+    equipmentInfo1.place(relx=0.3, rely=0.2, relwidth=0.62, relheight=0.08)
+
     # Title
-    lb2 = Label(labelFrame,text="Title : ", bg='black', fg='white')
-    lb2.place(relx=0.05,rely=0.35, relheight=0.08)
-        
+    lb2 = Label(labelFrame, text="Title : ", bg='black', fg='white')
+    lb2.place(relx=0.05, rely=0.35, relheight=0.08)
+
     equipmentInfo2 = Entry(labelFrame)
-    equipmentInfo2.place(relx=0.3,rely=0.35, relwidth=0.62, relheight=0.08)
-        
+    equipmentInfo2.place(relx=0.3, rely=0.35, relwidth=0.62, relheight=0.08)
+
     # equipment Author
-    lb3 = Label(labelFrame,text="Author : ", bg='black', fg='white')
-    lb3.place(relx=0.05,rely=0.50, relheight=0.08)
-        
+    lb3 = Label(labelFrame, text="Author : ", bg='black', fg='white')
+    lb3.place(relx=0.05, rely=0.50, relheight=0.08)
+
     equipmentInfo3 = Entry(labelFrame)
-    equipmentInfo3.place(relx=0.3,rely=0.50, relwidth=0.62, relheight=0.08)
-        
+    equipmentInfo3.place(relx=0.3, rely=0.50, relwidth=0.62, relheight=0.08)
+
     # equipment Status
-    lb4 = Label(labelFrame,text="Status(Avail/issued) : ", bg='black', fg='white')
-    lb4.place(relx=0.05,rely=0.65, relheight=0.08)
-        
+    lb4 = Label(labelFrame, text="Status(Avail/issued) : ",
+                bg='black', fg='white')
+    lb4.place(relx=0.05, rely=0.65, relheight=0.08)
+
     equipmentInfo4 = Entry(labelFrame)
-    equipmentInfo4.place(relx=0.3,rely=0.65, relwidth=0.62, relheight=0.08)
-        
-    #Submit Button
-    SubmitBtn = Button(root,text="SUBMIT",bg='#d1ccc0', fg='black',command=equipmentRegister)
-    SubmitBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
-    
-    quitBtn = Button(root,text="Quit",bg='#f7f1e3', fg='black', command=root.destroy)
-    quitBtn.place(relx=0.53,rely=0.9, relwidth=0.18,relheight=0.08)
-    
+    equipmentInfo4.place(relx=0.3, rely=0.65, relwidth=0.62, relheight=0.08)
+
+    # Submit Button
+    SubmitBtn = Button(root, text="SUBMIT", bg='#d1ccc0',
+                       fg='black', command=equipmentRegister)
+    SubmitBtn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
+
+    quitBtn = Button(root, text="Quit", bg='#f7f1e3',
+                     fg='black', command=root.destroy)
+    quitBtn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
+
     root.mainloop()
 
+
 def deleteBook():
-    
+
     eid = bookInfo1.get()
-    
+
     deleteSql = "delete from "+equipmentTable+" where eid = '"+eid+"'"
     deleteIssue = "delete from "+issueTable+" where eid = '"+eid+"'"
     try:
@@ -667,60 +715,63 @@ def deleteBook():
         conn.commit()
         conn.execute(deleteIssue)
         conn.commit()
-        messagebox.showinfo('Success',"Book Record Deleted Successfully")
+        messagebox.showinfo('Success', "Book Record Deleted Successfully")
     except:
         messagebox.showinfo("Please check Book ID")
-    
 
     print(eid)
 
     bookInfo1.delete(0, END)
     root.destroy()
-    
-def delete(): 
-    
-    global bookInfo1,bookInfo2,bookInfo3,bookInfo4,Canvas1,con,cur,bookTable,root
-    
+
+
+def delete():
+
+    global bookInfo1, bookInfo2, bookInfo3, bookInfo4, Canvas1, con, cur, bookTable, root
+
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Sports Equipment")
+    root.minsize(width=400, height=400)
     root.geometry("600x500")
 
-    
     Canvas1 = Canvas(root)
-    
+
     Canvas1.config(bg="#006B38")
-    Canvas1.pack(expand=True,fill=BOTH)
-        
-    headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
-    headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
-        
-    headingLabel = Label(headingFrame1, text="Delete Book", bg='black', fg='white', font=('tr',15))
-    headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
-    
-    labelFrame = Frame(root,bg='black')
-    labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)   
-        
+    Canvas1.pack(expand=True, fill=BOTH)
+
+    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
+
+    headingLabel = Label(headingFrame1, text="Delete Book",
+                         bg='black', fg='white', font=('tr', 15))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+    labelFrame = Frame(root, bg='black')
+    labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+
     # Book ID to Delete
-    lb2 = Label(labelFrame,text="Book ID : ", bg='black', fg='white')
-    lb2.place(relx=0.05,rely=0.5)
-        
+    lb2 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    lb2.place(relx=0.05, rely=0.5)
+
     bookInfo1 = Entry(labelFrame)
-    bookInfo1.place(relx=0.3,rely=0.5, relwidth=0.62)
-    
-    #Submit Button
-    SubmitBtn = Button(root,text="SUBMIT",bg='#d1ccc0', fg='black',command=deleteBook)
-    SubmitBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
-    
-    quitBtn = Button(root,text="Quit",bg='#f7f1e3', fg='black', command=root.destroy)
-    quitBtn.place(relx=0.53,rely=0.9, relwidth=0.18,relheight=0.08)
-    
+    bookInfo1.place(relx=0.3, rely=0.5, relwidth=0.62)
+
+    # Submit Button
+    SubmitBtn = Button(root, text="SUBMIT", bg='#d1ccc0',
+                       fg='black', command=deleteBook)
+    SubmitBtn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
+
+    quitBtn = Button(root, text="Quit", bg='#f7f1e3',
+                     fg='black', command=root.destroy)
+    quitBtn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
+
     root.mainloop()
 
+
 def issue():
-    
-    global issueBtn,labelFrame,lb1,inf1,inf2,quitBtn,root,Canvas1,status
-    
+
+    global issueBtn, labelFrame, lb1, inf1, inf2, quitBtn, root, Canvas1, status
+
     eid = inf1.get()
     issueto = inf2.get()
 
@@ -729,107 +780,112 @@ def issue():
     lb1.destroy()
     inf1.destroy()
     inf2.destroy()
-    
-    
+
     extracteid = "select eid from "+equipmentTable
     try:
         conn.execute(extracteid)
         conn.commit()
         for i in conn:
             alleid.append(i[0])
-        
+
         if eid in alleid:
             checkAvail = "select status from "+equipmentTable+" where eid = '"+eid+"'"
             conn.execute(checkAvail)
             conn.commit()
             for i in conn:
                 check = i[0]
-                
+
             if check == 'avail':
                 status = True
             else:
                 status = False
 
         else:
-            messagebox.showinfo("Error","Book ID not present")
+            messagebox.showinfo("Error", "Book ID not present")
     except:
-        messagebox.showinfo("Error","Can't fetch Book IDs")
-    
+        messagebox.showinfo("Error", "Can't fetch Book IDs")
+
     issueSql = "insert into "+issueTable+" values ('"+eid+"','"+issueto+"')"
     show = "select * from "+issueTable
-    
-    updateStatus = "update "+equipmentTable+" set status = 'issued' where eid = '"+eid+"'"
+
+    updateStatus = "update "+equipmentTable + \
+        " set status = 'issued' where eid = '"+eid+"'"
     try:
         if eid in alleid and status == True:
             conn.execute(issueSql)
             conn.commit()
             conn.execute(updateStatus)
             conn.commit()
-            messagebox.showinfo('Success',"Book Issued Successfully")
+            messagebox.showinfo('Success', "Book Issued Successfully")
             root.destroy()
         else:
             alleid.clear()
-            messagebox.showinfo('Message',"Book Already Issued")
+            messagebox.showinfo('Message', "Book Already Issued")
             root.destroy()
             return
     except:
-        messagebox.showinfo("Search Error","The value entered is wrong, Try again")
-    
+        messagebox.showinfo(
+            "Search Error", "The value entered is wrong, Try again")
+
     print(eid)
     print(issueto)
-    
+
     alleid.clear()
-    
-def issueBook(): 
-    
-    global issueBtn,labelFrame,lb1,inf1,inf2,quitBtn,root,Canvas1,status
-    
+
+
+def issueBook():
+
+    global issueBtn, labelFrame, lb1, inf1, inf2, quitBtn, root, Canvas1, status
+
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Issue Equipment")
+    root.minsize(width=400, height=400)
     root.geometry("600x500")
-    
+
     Canvas1 = Canvas(root)
     Canvas1.config(bg="#D6ED17")
-    Canvas1.pack(expand=True,fill=BOTH)
+    Canvas1.pack(expand=True, fill=BOTH)
 
-    headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
-    headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
-        
-    headingLabel = Label(headingFrame1, text="Issue Book", bg='black', fg='white', font=('tr',15))
-    headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
-    
-    labelFrame = Frame(root,bg='black')
-    labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)  
-        
+    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
+
+    headingLabel = Label(headingFrame1, text="Issue Book",
+                         bg='black', fg='white', font=('tr', 15))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+    labelFrame = Frame(root, bg='black')
+    labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+
     # Book ID
-    lb1 = Label(labelFrame,text="Book ID : ", bg='black', fg='white')
-    lb1.place(relx=0.05,rely=0.2)
-        
+    lb1 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    lb1.place(relx=0.05, rely=0.2)
+
     inf1 = Entry(labelFrame)
-    inf1.place(relx=0.3,rely=0.2, relwidth=0.62)
-    
-    # Issued To Student name 
-    lb2 = Label(labelFrame,text="Issued To : ", bg='black', fg='white')
-    lb2.place(relx=0.05,rely=0.4)
-        
+    inf1.place(relx=0.3, rely=0.2, relwidth=0.62)
+
+    # Issued To Student name
+    lb2 = Label(labelFrame, text="Issued To : ", bg='black', fg='white')
+    lb2.place(relx=0.05, rely=0.4)
+
     inf2 = Entry(labelFrame)
-    inf2.place(relx=0.3,rely=0.4, relwidth=0.62)
-    
-    
-    #Issue Button
-    issueBtn = Button(root,text="Issue",bg='#d1ccc0', fg='black',command=issue)
-    issueBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
-    
-    quitBtn = Button(root,text="Quit",bg='#aaa69d', fg='black', command=root.destroy)
-    quitBtn.place(relx=0.53,rely=0.9, relwidth=0.18,relheight=0.08)
-    
+    inf2.place(relx=0.3, rely=0.4, relwidth=0.62)
+
+    # Issue Button
+    issueBtn = Button(root, text="Issue", bg='#d1ccc0',
+                      fg='black', command=issue)
+    issueBtn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
+
+    quitBtn = Button(root, text="Quit", bg='#aaa69d',
+                     fg='black', command=root.destroy)
+    quitBtn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
+
     root.mainloop()
 
+
 def returnn():
-    
-    global SubmitBtn,labelFrame,lb1,bookInfo1,quitBtn,root,Canvas1,status
-    
+
+    global SubmitBtn, labelFrame, lb1, bookInfo1, quitBtn, root, Canvas1, status
+
     eid = bookInfo1.get()
 
     extracteid = "select eid from "+issueTable
@@ -838,147 +894,156 @@ def returnn():
         conn.commit()
         for i in conn:
             alleid.append(i[0])
-        
+
         if eid in alleid:
             checkAvail = "select status from "+equipmentTable+" where eid = '"+eid+"'"
             conn.execute(checkAvail)
             conn.commit()
             for i in conn:
                 check = i[0]
-                
+
             if check == 'issued':
                 status = True
             else:
                 status = False
 
         else:
-            messagebox.showinfo("Error","Book ID not present")
+            messagebox.showinfo("Error", "Book ID not present")
     except:
-        messagebox.showinfo("Error","Can't fetch Book IDs")
-    
-    
+        messagebox.showinfo("Error", "Can't fetch Book IDs")
+
     issueSql = "delete from "+issueTable+" where eid = '"+eid+"'"
-  
+
     print(eid in alleid)
     print(status)
-    updateStatus = "update "+equipmentTable+" set status = 'avail' where eid = '"+eid+"'"
+    updateStatus = "update "+equipmentTable + \
+        " set status = 'avail' where eid = '"+eid+"'"
     try:
         if eid in alleid and status == True:
             conn.execute(issueSql)
             conn.commit()
             conn.execute(updateStatus)
             conn.commit()
-            messagebox.showinfo('Success',"Book Returned Successfully")
+            messagebox.showinfo('Success', "Book Returned Successfully")
         else:
             alleid.clear()
-            messagebox.showinfo('Message',"Please check the book ID")
+            messagebox.showinfo('Message', "Please check the book ID")
             root.destroy()
             return
     except:
-        messagebox.showinfo("Search Error","The value entered is wrong, Try again")
-    
-    
+        messagebox.showinfo(
+            "Search Error", "The value entered is wrong, Try again")
+
     alleid.clear()
     root.destroy()
-    
-def returnBook(): 
-    
-    global bookInfo1,SubmitBtn,quitBtn,Canvas1,con,cur,root,labelFrame, lb1
-    
+
+
+def returnBook():
+
+    global bookInfo1, SubmitBtn, quitBtn, Canvas1, con, cur, root, labelFrame, lb1
+
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Return Equipment")
+    root.minsize(width=400, height=400)
     root.geometry("600x500")
 
-    
     Canvas1 = Canvas(root)
-    
+
     Canvas1.config(bg="#006B38")
-    Canvas1.pack(expand=True,fill=BOTH)
-        
-    headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
-    headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
-        
-    headingLabel = Label(headingFrame1, text="Return Book", bg='black', fg='white', font=('tr',15))
-    headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
-    
-    labelFrame = Frame(root,bg='black')
-    labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)   
-        
+    Canvas1.pack(expand=True, fill=BOTH)
+
+    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
+
+    headingLabel = Label(headingFrame1, text="Return Book",
+                         bg='black', fg='white', font=('tr', 15))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+    labelFrame = Frame(root, bg='black')
+    labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+
     # Book ID to Delete
-    lb1 = Label(labelFrame,text="Book ID : ", bg='black', fg='white')
-    lb1.place(relx=0.05,rely=0.5)
-        
+    lb1 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    lb1.place(relx=0.05, rely=0.5)
+
     bookInfo1 = Entry(labelFrame)
-    bookInfo1.place(relx=0.3,rely=0.5, relwidth=0.62)
-    
-    #Submit Button
-    SubmitBtn = Button(root,text="Return",bg='#d1ccc0', fg='black',command=returnn)
-    SubmitBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
-    
-    quitBtn = Button(root,text="Quit",bg='#f7f1e3', fg='black', command=root.destroy)
-    quitBtn.place(relx=0.53,rely=0.9, relwidth=0.18,relheight=0.08)
-    
+    bookInfo1.place(relx=0.3, rely=0.5, relwidth=0.62)
+
+    # Submit Button
+    SubmitBtn = Button(root, text="Return", bg='#d1ccc0',
+                       fg='black', command=returnn)
+    SubmitBtn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
+
+    quitBtn = Button(root, text="Quit", bg='#f7f1e3',
+                     fg='black', command=root.destroy)
+    quitBtn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
+
     root.mainloop()
 
-def View(): 
-    
+
+def View():
+
     root = Tk()
-    root.title("Library")
-    root.minsize(width=400,height=400)
+    root.title("Equipment")
+    root.minsize(width=400, height=400)
     root.geometry("600x500")
 
-
-    Canvas1 = Canvas(root) 
+    Canvas1 = Canvas(root)
     Canvas1.config(bg="#12a4d9")
-    Canvas1.pack(expand=True,fill=BOTH)
-        
-        
-    headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
-    headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
-        
-    headingLabel = Label(headingFrame1, text="View Books", bg='black', fg='white', font=('tr',15))
-    headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
-    
-    labelFrame = Frame(root,bg='black')
-    labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)
+    Canvas1.pack(expand=True, fill=BOTH)
+
+    headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
+
+    headingLabel = Label(headingFrame1, text="View Equipment",
+                         bg='black', fg='white', font=('tr', 15))
+    headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+    labelFrame = Frame(root, bg='black')
+    labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
     y = 0.25
-    
-    Label(labelFrame, text="%-10s%-40s%-30s%-20s"%('eid','Title','Author','Status'),bg='black',fg='white').place(relx=0.07,rely=0.1)
-    Label(labelFrame, text="----------------------------------------------------------------------------",bg='black',fg='white').place(relx=0.05,rely=0.2)
-    getBooks = "select * from "+equipmentTable
+
+    Label(labelFrame, text="%-10s%-40s%-30s%-20s" % ('eid', 'Title',
+          'Author', 'Status'), bg='black', fg='white').place(relx=0.07, rely=0.1)
+    Label(labelFrame, text="----------------------------------------------------------------------------",
+          bg='black', fg='white').place(relx=0.05, rely=0.2)
+    getEquipment = "select * from "+equipmentTable
     try:
-        conn.execute(getBooks)
+        conn.execute(getEquipment)
         conn.commit()
         for i in conn:
-            Label(labelFrame, text="%-10s%-30s%-30s%-20s"%(i[0],i[1],i[2],i[3]),bg='black',fg='white').place(relx=0.07,rely=y)
+            Label(labelFrame, text="%-10s%-30s%-30s%-20s" %
+                  (i[0], i[1], i[2], i[3]), bg='black', fg='white').place(relx=0.07, rely=y)
             y += 0.1
     except:
         messagebox.showinfo("Failed to fetch files from database")
-    
-    quitBtn = Button(root,text="Quit",bg='#f7f1e3', fg='black', command=root.destroy)
-    quitBtn.place(relx=0.4,rely=0.9, relwidth=0.18,relheight=0.08)
-    
+
+    quitBtn = Button(root, text="Quit", bg='#f7f1e3',
+                     fg='black', command=root.destroy)
+    quitBtn.place(relx=0.4, rely=0.9, relwidth=0.18, relheight=0.08)
+
     root.mainloop()
+
 
 def registerinfo():
     reg = tk.Toplevel()
-    reg.geometry("900x600+100+50")
-    reg.configure(bg="white")
+    reg.geometry("900x700")
+    reg.configure(bg="blue")
     reg.title("REGISTERATION")
     reg.resizable(False, False)
 
-    frame2 = Frame(reg, bg="white").place(x=180, y=80, height=600, width=600)
-    Label(reg, text="REGISTRATION", font="tr 20 bold",
-          fg="Blue", anchor="c").place(x=350, y=150)
+    # frame2 = Frame(reg, bg="white").place(x=180, y=80, height=600, width=600)
+    # Label(reg, text="REGISTRATION", font="tr 20 bold",
+    #       fg="Blue", anchor="c").place(x=350, y=150)
 
-    headingFrame2 = Frame(root, bg="#FFBB00", bd=5)
+    headingFrame2 = Frame(reg, bg="#FFBB00", bd=5)
     headingFrame2.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
     headingLabelr = Label(headingFrame2, text="ADD NEW USER",
-                         bg='black', fg='white', font=('tr', 20))
-    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)    #ye idhar change kiya fir bhi main window me change hota hai
-                                                                    #window close nahi hote automatically
-    
+                          bg='black', fg='white', font=('tr', 20))
+    # ye idhar change kiya fir bhi main window me change hota hai
+    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)
+    # window close nahi hote automatically
+
     Name = Label(reg, text="NAME", fg="black", bg="white",
                  font="Bold 10").place(x=250, y=200)
     Uname = Label(reg, text="USERNAME", fg="black", bg="white",
@@ -990,6 +1055,8 @@ def registerinfo():
     Phn = Label(reg, text="PHONE NUMBER", fg="black",
                 bg="white", font="Bold 10").place(x=250, y=400)
     Email = Label(reg, text="EMAIL_ID", fg="black", bg="white",
+                  font="Bold 10").place(x=250, y=450)
+    Type = Label(reg, text="Account Type", fg="black", bg="white",
                   font="Bold 10").place(x=250, y=450)
     print("registerinfo_start")
     RName = tk.Entry(reg)
@@ -1004,9 +1071,12 @@ def registerinfo():
     RPhn.place(x=400, y=400)
     REmail = tk.Entry(reg)
     REmail.place(x=400, y=450)
+    RType = tk.Entry(reg)
+    RType.place(x=400, y=500)
+
     Back1 = Button(reg, text="Back", font="tr 10", fg="black",
-                bg="#41B3A3", command=Back_page).place(x=650, y=620)
-    
+                   bg="#41B3A3", command=Back_page).place(x=650, y=620)
+
     def registerinfo1():
         print("registerinfo1")
         RDatestamp = datetime.datetime.now()
@@ -1018,8 +1088,8 @@ def registerinfo():
         REmail1 = REmail.get()
         # Rtype = RType.get()
         print("start")
-        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ) "
-                     "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1))
+        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ,Type) "
+                     "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1, RType))
         # conn.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
         print("done")
         messagebox.showinfo("REGISTRATION SUCCESFUL!", "BACK TO LOGIN!")
@@ -1027,6 +1097,7 @@ def registerinfo():
         # conn.close()
     b = Button(reg, text="REGISTER", bg="white", fg="black",
                command=registerinfo1, bd=2).place(x=400, y=550)
+
 
 B1 = tk.Button(root, text="LOGIN", command=logininfo).place(x=370, y=360)
 B2 = tk.Button(root, text="REGISTER", command=registerinfo).place(x=470, y=360)
