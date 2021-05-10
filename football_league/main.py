@@ -66,7 +66,7 @@ class Application:
             'on_append': self.on_append
         }
 
-        builder.connect_callbacks(self)
+        builder.connectect_callbacks(self)
 
     def show_dialog(self):
         self.mainwindow.update()

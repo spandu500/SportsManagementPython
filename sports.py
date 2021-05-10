@@ -2,26 +2,28 @@ import sqlite3
 import tkinter as tk
 import datetime
 from tkinter import *
+import SchoolTeam
+import shop
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import Scrollbar
 import sports
 
-conn = sqlite3.connect('sports.db')
-conn.cursor()
-conn.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
+connect = sqlite3.connect('sports.db')
+connect.cursor()
+connect.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
 
-conn.execute(
-    'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type INTEGER)')
-conn.execute(
+connect.execute(
+    'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type TEXT)')
+connect.execute(
     'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
-conn.execute('CREATE TABLE IF NOT EXISTS equipment(eid varchar(30), title varchar(30), author varchar(30), status varchar(30))')
-conn.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), author varchar(30), status varchar(30))')
+connect.execute('CREATE TABLE IF NOT EXISTS equipment(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
+connect.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
 
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
 
-conn.execute(
+connect.execute(
     'CREATE TABLE IF NOT EXISTS ShopStonks(Date TEXT, ItemName TEXT, ItemDesc TEXT, Stocks INTEGER)')
 
 # Enter Table Names here
@@ -86,22 +88,26 @@ def logininfo():
     datestamp = datetime.datetime.now()
     username1 = username.get()
     password1 = password.get()
-    x = conn.cursor()
+    x = connect.cursor()
+    y =connect.cursor()
     # Find user If there is any take proper action
-    x.execute('SELECT Username,Password FROM Users WHERE Username=? AND Password=?',
+    x.execute('SELECT Username,Password,Type FROM Users WHERE Username=? AND Password=?',
+              (username1, password1))
+    y.execute('SELECT Type FROM Users WHERE Username=? AND Password=?',
               (username1, password1))
     found = x.fetchone()
     if found:
-        conn.execute(insert_command % (datestamp, username1, password1))
-        conn.commit()
-        # conn.close()
-        loggedin()
+        connect.execute(insert_command % (datestamp, username1, password1))
+        Type = y.fetchone()
+        connect.commit()
+        # connect.close()
+        loggedin(Type)
     else:
         messagebox.showerror('Oops!', 'Username or Password is incorrect.')
 
 
-def loggedin():
-    messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!!")
+def loggedin(Type):
+    messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!! Welcome to The Club")
     window2 = Toplevel()
     window2.geometry("1000x1000")
     window2.configure(bg="orange")
@@ -109,7 +115,7 @@ def loggedin():
     window2.resizable(False, False)
     headingFrame1 = Frame(window2, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
-    headingLabel = Label(headingFrame1, text="SELECT AN OPTION",
+    headingLabel = Label(headingFrame1, text= f"Hello {Type} SELECT AN OPTION",
                          bg='black', fg='white', font=('tr', 20))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
@@ -129,22 +135,25 @@ def loggedin():
                   bg='black', fg='white', command=issueBook)
     btn4.place(relx=0.28, rely=0.6, relwidth=0.45, relheight=0.1)
 
-    btn5 = Button(window2, text="Return Equipment", bg='black',
+
+
+    if Type !="('Student',)":   #not working
+        btn5 = Button(window2, text="Return Equipment", bg='black',
                   fg='white', command=returnBook)
-    btn5.place(relx=0.28, rely=0.7, relwidth=0.45, relheight=0.1)
+        btn5.place(relx=0.28, rely=0.7, relwidth=0.45, relheight=0.1)
 
-    # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
-    # coach.place(x=150, y=100, width=600)
+        # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
+        # coach.place(x=150, y=100, width=600)
 
-    btn6 = Button(window2, text="Book Turf/PlayGround",
-                  bg='black', fg="white", bd=4, command=bookingPage1)
-    btn6.place(relx=0.28, rely=0.8, relwidth=0.45, relheight=0.1)
-    btn7 = Button(window2, text="Shop Equipments",
-                  bg="black", fg = 'white', bd=4, command=equipmentShop)
-    btn7.place(relx=0.28, rely=0.9, relwidth=0.45, relheight=0.1)
-    btn8 = Button(window2, text="Ground Booking History",
-                  bg="black", fg='white', bd=4, command=Booking_History)
-    btn8.place(relx=0.28, rely=1.0, relwidth=0.45, relheight=0.1)
+        btn6 = Button(window2, text="Book Turf/PlayGround",
+                    bg='black', fg="white", bd=4, command=bookingPage1)
+        btn6.place(relx=0.28, rely=0.8, relwidth=0.45, relheight=0.1)
+        btn7 = Button(window2, text="Shop Equipments",
+                    bg="black", fg = 'white', bd=4, command=equipmentShop)
+        btn7.place(relx=0.28, rely=0.9, relwidth=0.45, relheight=0.1)
+        btn8 = Button(window2, text="Ground Booking History",
+                    bg="black", fg='white', bd=4, command=Booking_History)
+        btn8.place(relx=0.28, rely=1.0, relwidth=0.45, relheight=0.1)
 
 
 def match_info():
@@ -268,14 +277,14 @@ def Booking_History():
         bphone = Booked_phonenumber.get()
         baddress = Booked_address.get()
 
-        z = conn.cursor()
+        z = connect.cursor()
         z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM BookedGround WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
                   (bname, bphone, baddress))
         found2 = z.fetchone()
         if found2:
             print("Booking found")
-            conn.cursor()
-            a = conn.execute('SELECT * FROM BookedGround')
+            connect.cursor()
+            a = connect.execute('SELECT * FROM BookedGround')
             b = Entry(hist, a, fg="black")
             # b.place(x=130, y=290, width=600, height=100)
             # b.insert(END,)
@@ -287,8 +296,8 @@ def Booking_History():
                     b.insert(END, BookedGround[j])
                     i = i+1
             b.place(x=150, y=290)
-            conn.commit()
-            conn.execute("SELECT * FROM student limit 0,10")
+            connect.commit()
+            connect.execute("SELECT * FROM student limit 0,10")
         else:
             messagebox.showinfo(
                 'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
@@ -350,7 +359,7 @@ def Book_now():
         Phnentry1 = Phnentry.get()
         Timeentry1 = Timeentry.get()
         Locationentry1 = Locationentry.get()
-        y = conn.cursor()
+        y = connect.cursor()
         y.execute('SELECT TIME_SLOT,Ground_Location FROM BookedGround WHERE TIME_SLOT=? AND Ground_Location=?',
                   (Timeentry1, Locationentry1))
         found1 = y.fetchone()
@@ -360,11 +369,11 @@ def Book_now():
             Book_now()
         else:
             print("booking start")
-            conn.cursor()
-            conn.execute('INSERT INTO BookedGround(Datestamp , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
+            connect.cursor()
+            connect.execute('INSERT INTO BookedGround(Datestamp , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
                          'VALUES(?,?,?,?,?)', (BDatestamp, nmentry1, Phnentry1, Timeentry1, Locationentry1))
-            conn.commit()
-            # conn.close()
+            connect.commit()
+            # connect.close()
             print("booking done")
             messagebox.showinfo("BOOKED", "BOOKING SUCCEFUL!!")
 
@@ -458,7 +467,7 @@ def equipmentShop():
     a6 = Label(equip, text="8852023645", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=200)
     b1 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=cart())
+                fg="black", bd=1, bg="#41B3A3", command=shop.cart())
     b1.place(x=300, y=250)
 
     # 2nd Shop
@@ -475,7 +484,7 @@ def equipmentShop():
     b16 = Label(equip, text="8254682025", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=cart())
+                fg="black", bd=1, bg="#41B3A3", command=shop.cart())
     b2.place(x=300, y=420)
 
 
@@ -493,11 +502,11 @@ def equipmentShop():
     b16 = Label(equip, text="825468545", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(equip, text="Shop Now", font="tr 10",
-                fg="black", bd=1, bg="#41B3A3", command=cart())
+                fg="black", bd=1, bg="#41B3A3", command=shop.cart())
     b2.place(x=300, y=420)
 
 
-def cart(self):
+def cartx(self):
     def press():
         sc.delete("1.0", tk.END)
         sc.insert(tk.END, getList(self))
@@ -618,22 +627,22 @@ def equipmentRegister():
 
     eid = equipmentInfo1.get()
     title = equipmentInfo2.get()
-    author = equipmentInfo3.get()
+    Manufacturer = equipmentInfo3.get()
     status = equipmentInfo4.get()
     status = status.lower()
 
     insertequipments = "insert into "+equipmentTable + \
-        " values('"+eid+"','"+title+"','"+author+"','"+status+"')"
+        " values('"+eid+"','"+title+"','"+Manufacturer+"','"+status+"')"
     try:
-        conn.execute(insertequipments)
-        conn.commit()
+        connect.execute(insertequipments)
+        connect.commit()
         messagebox.showinfo('Success', "equipment added successfully")
     except:
         messagebox.showinfo("Error", "Can't add data into Database")
 
     print(eid)
     print(title)
-    print(author)
+    print(Manufacturer)
     print(status)
 
     root.destroy()
@@ -677,8 +686,8 @@ def addequipment():
     equipmentInfo2 = Entry(labelFrame)
     equipmentInfo2.place(relx=0.3, rely=0.35, relwidth=0.62, relheight=0.08)
 
-    # equipment Author
-    lb3 = Label(labelFrame, text="Author : ", bg='black', fg='white')
+    # equipment Manufacturer
+    lb3 = Label(labelFrame, text="Manufacturer : ", bg='black', fg='white')
     lb3.place(relx=0.05, rely=0.50, relheight=0.08)
 
     equipmentInfo3 = Entry(labelFrame)
@@ -711,10 +720,10 @@ def deleteBook():
     deleteSql = "delete from "+equipmentTable+" where eid = '"+eid+"'"
     deleteIssue = "delete from "+issueTable+" where eid = '"+eid+"'"
     try:
-        conn.execute(deleteSql)
-        conn.commit()
-        conn.execute(deleteIssue)
-        conn.commit()
+        connect.execute(deleteSql)
+        connect.commit()
+        connect.execute(deleteIssue)
+        connect.commit()
         messagebox.showinfo('Success', "Book Record Deleted Successfully")
     except:
         messagebox.showinfo("Please check Book ID")
@@ -783,16 +792,16 @@ def issue():
 
     extracteid = "select eid from "+equipmentTable
     try:
-        conn.execute(extracteid)
-        conn.commit()
-        for i in conn:
+        connect.execute(extracteid)
+        connect.commit()
+        for i in connect:
             alleid.append(i[0])
 
         if eid in alleid:
             checkAvail = "select status from "+equipmentTable+" where eid = '"+eid+"'"
-            conn.execute(checkAvail)
-            conn.commit()
-            for i in conn:
+            connect.execute(checkAvail)
+            connect.commit()
+            for i in connect:
                 check = i[0]
 
             if check == 'avail':
@@ -812,10 +821,10 @@ def issue():
         " set status = 'issued' where eid = '"+eid+"'"
     try:
         if eid in alleid and status == True:
-            conn.execute(issueSql)
-            conn.commit()
-            conn.execute(updateStatus)
-            conn.commit()
+            connect.execute(issueSql)
+            connect.commit()
+            connect.execute(updateStatus)
+            connect.commit()
             messagebox.showinfo('Success', "Book Issued Successfully")
             root.destroy()
         else:
@@ -890,16 +899,16 @@ def returnn():
 
     extracteid = "select eid from "+issueTable
     try:
-        conn.execute(extracteid)
-        conn.commit()
-        for i in conn:
+        connect.execute(extracteid)
+        connect.commit()
+        for i in connect:
             alleid.append(i[0])
 
         if eid in alleid:
             checkAvail = "select status from "+equipmentTable+" where eid = '"+eid+"'"
-            conn.execute(checkAvail)
-            conn.commit()
-            for i in conn:
+            connect.execute(checkAvail)
+            connect.commit()
+            for i in connect:
                 check = i[0]
 
             if check == 'issued':
@@ -920,10 +929,10 @@ def returnn():
         " set status = 'avail' where eid = '"+eid+"'"
     try:
         if eid in alleid and status == True:
-            conn.execute(issueSql)
-            conn.commit()
-            conn.execute(updateStatus)
-            conn.commit()
+            connect.execute(issueSql)
+            connect.commit()
+            connect.execute(updateStatus)
+            connect.commit()
             messagebox.showinfo('Success', "Book Returned Successfully")
         else:
             alleid.clear()
@@ -1004,14 +1013,14 @@ def View():
     y = 0.25
 
     Label(labelFrame, text="%-10s%-40s%-30s%-20s" % ('eid', 'Title',
-          'Author', 'Status'), bg='black', fg='white').place(relx=0.07, rely=0.1)
+          'Manufacturer', 'Status'), bg='black', fg='white').place(relx=0.07, rely=0.1)
     Label(labelFrame, text="----------------------------------------------------------------------------",
           bg='black', fg='white').place(relx=0.05, rely=0.2)
     getEquipment = "select * from "+equipmentTable
     try:
-        conn.execute(getEquipment)
-        conn.commit()
-        for i in conn:
+        connect.execute(getEquipment)
+        connect.commit()
+        for i in connect:
             Label(labelFrame, text="%-10s%-30s%-30s%-20s" %
                   (i[0], i[1], i[2], i[3]), bg='black', fg='white').place(relx=0.07, rely=y)
             y += 0.1
@@ -1028,9 +1037,26 @@ def View():
 def registerinfo():
     reg = tk.Toplevel()
     reg.geometry("900x700")
-    reg.configure(bg="blue")
+    reg.configure(bg="grey")
     reg.title("REGISTERATION")
     reg.resizable(False, False)
+
+    # # Adding a background image
+    # background_image = Image.open("sports.jpg")
+    # [imageSizeWidth, imageSizeHeight] = background_image.size
+    # newImageSizeWidth = int(imageSizeWidth*n)
+    # if same:
+    #     newImageSizeHeight = int(imageSizeHeight*n)
+    # else:
+    #     newImageSizeHeight = int(imageSizeHeight/n)
+
+    # background_image = background_image.resize(
+    #     (newImageSizeWidth, newImageSizeHeight), Image.ANTIALIAS)
+    # img = ImageTk.PhotoImage(background_image)
+    # reg = Canvas(root)
+    # reg.create_image(300, 340, image=img)
+    # reg.config(bg="white", width=newImageSizeWidth, height=newImageSizeHeight)
+    # reg.pack(expand=True, fill=BOTH)
 
     # frame2 = Frame(reg, bg="white").place(x=180, y=80, height=600, width=600)
     # Label(reg, text="REGISTRATION", font="tr 20 bold",
@@ -1057,22 +1083,22 @@ def registerinfo():
     Email = Label(reg, text="EMAIL_ID", fg="black", bg="white",
                   font="Bold 10").place(x=250, y=450)
     Type = Label(reg, text="Account Type", fg="black", bg="white",
-                  font="Bold 10").place(x=250, y=450)
+                  font="Bold 10").place(x=250, y=500)
     print("registerinfo_start")
     RName = tk.Entry(reg)
-    RName.place(x=400, y=200)
+    RName.place(x=450, y=200)
     RUname = tk.Entry(reg)
-    RUname.place(x=400, y=250)
+    RUname.place(x=450, y=250)
     RPas = tk.Entry(reg, show="*")
-    RPas.place(x=400, y=300)
+    RPas.place(x=450, y=300)
     RCpas = tk.Entry(reg, show="*")
-    RCpas.place(x=400, y=350)
+    RCpas.place(x=450, y=350)
     RPhn = tk.Entry(reg)
-    RPhn.place(x=400, y=400)
+    RPhn.place(x=450, y=400)
     REmail = tk.Entry(reg)
-    REmail.place(x=400, y=450)
+    REmail.place(x=450, y=450)
     RType = tk.Entry(reg)
-    RType.place(x=400, y=500)
+    RType.place(x=450, y=500)
 
     Back1 = Button(reg, text="Back", font="tr 10", fg="black",
                    bg="#41B3A3", command=Back_page).place(x=650, y=620)
@@ -1086,15 +1112,15 @@ def registerinfo():
         RCpas1 = RPas.get()
         RPhn1 = RPhn.get()
         REmail1 = REmail.get()
-        # Rtype = RType.get()
+        RType1 = RType.get()
         print("start")
-        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ,Type) "
-                     "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1, RType))
-        # conn.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
+        connect.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ,Type) "
+                     "VALUES (?,?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1, RType1))
+        # connect.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
         print("done")
         messagebox.showinfo("REGISTRATION SUCCESFUL!", "BACK TO LOGIN!")
-        conn.commit()
-        # conn.close()
+        connect.commit()
+        # connect.close()
     b = Button(reg, text="REGISTER", bg="white", fg="black",
                command=registerinfo1, bd=2).place(x=400, y=550)
 

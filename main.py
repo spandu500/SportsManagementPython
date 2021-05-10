@@ -8,18 +8,18 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import Scrollbar
 
-conn = sqlite3.connect('sports.db')
-conn.cursor()
-conn.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
+connect = sqlite3.connectect('sports.db')
+connect.cursor()
+connect.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
 
-conn.execute(
+connect.execute(
     'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type INTEGER)')
-conn.execute(
+connect.execute(
     'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
 
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
 
-conn.execute(
+connect.execute(
     'CREATE TABLE IF NOT EXISTS ShopStonks(Date TEXT, ItemName TEXT, ItemDesc TEXT, Stocks INTEGER)')
 
 
@@ -250,14 +250,14 @@ def Booking_History():
         bphone = Booked_phonenumber.get()
         baddress = Booked_address.get()
 
-        z = conn.cursor()
+        z = connect.cursor()
         z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM BookedGround WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
                   (bname, bphone, baddress))
         found2 = z.fetchone()
         if found2:
             print("Booking found")
-            conn.cursor()
-            a = conn.execute('SELECT * FROM BookedGround')
+            connect.cursor()
+            a = connect.execute('SELECT * FROM BookedGround')
             b = Entry(hist, a, fg="black")
             # b.place(x=130, y=290, width=600, height=100)
             # b.insert(END,)
@@ -269,8 +269,8 @@ def Booking_History():
                     b.insert(END, BookedGround[j])
                     i = i+1
             b.place(x=150, y=290)
-            conn.commit()
-            conn.execute("SELECT * FROM student limit 0,10")
+            connect.commit()
+            connect.execute("SELECT * FROM student limit 0,10")
         else:
                 messagebox.showinfo(
                     'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
@@ -332,7 +332,7 @@ def Book_now():
         Phnentry1 = Phnentry.get()
         Timeentry1 = Timeentry.get()
         Locationentry1 = Locationentry.get()
-        y = conn.cursor()
+        y = connect.cursor()
         y.execute('SELECT TIME_SLOT,Ground_Location FROM BookedGround WHERE TIME_SLOT=? AND Ground_Location=?',
                   (Timeentry1, Locationentry1))
         found1 = y.fetchone()
@@ -342,11 +342,11 @@ def Book_now():
             Book_now()
         else:
             print("booking start")
-            conn.cursor()
-            conn.execute('INSERT INTO BookedGround(Datestamp , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
+            connect.cursor()
+            connect.execute('INSERT INTO BookedGround(Datestamp , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
                          'VALUES(?,?,?,?,?)', (BDatestamp, nmentry1, Phnentry1, Timeentry1, Locationentry1))
-            conn.commit()
-            # conn.close()
+            connect.commit()
+            # connect.close()
             print("booking done")
             messagebox.showinfo("BOOKED", "BOOKING SUCCEFUL!!")
 
@@ -539,15 +539,15 @@ def logininfo():
     datestamp = datetime.datetime.now()
     username1 = username.get()
     password1 = password.get()
-    x = conn.cursor()
+    x = connect.cursor()
     # Find user If there is any take proper action
     x.execute('SELECT Username,Password FROM Users WHERE Username=? AND Password=?',
               (username1, password1))
     found = x.fetchone()
     if found:
-        conn.execute(insert_command % (datestamp, username1, password1))
-        conn.commit()
-        # conn.close()
+        connect.execute(insert_command % (datestamp, username1, password1))
+        connect.commit()
+        # connect.close()
         messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!!")
         window2 = Toplevel()
         window2.geometry("900x600+100+50")
@@ -642,13 +642,13 @@ def registerinfo():
         REmail1 = REmail.get()
         # Rtype = RType.get()
         print("start")
-        conn.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ) "
+        connect.execute("INSERT INTO Users(Date, Name, Username, Password, ConfirmPassword ,Phone_number , Email ) "
                      "VALUES (?,?,?,?,?,?,?)", (RDatestamp, RName1, RUname1, RPas1, RCpas1, RPhn1, REmail1))
-        # conn.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
+        # connect.execute(insert_command1 % (RDatestamp, RName1, RUname1, RPas1,RCpas1, RPhn1, REmail1))
         print("done")
         messagebox.showinfo("REGISTRATION SUCCESFUL!", "BACK TO LOGIN!")
-        conn.commit()
-        # conn.close()
+        connect.commit()
+        # connect.close()
     b = Button(reg, text="REGISTER", bg="white", fg="black",
                command=registerinfo1, bd=2).place(x=400, y=550)
 
