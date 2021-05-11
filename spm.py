@@ -9,6 +9,7 @@ Modified: !date!
 import sqlite3
 import tkinter as tk
 import datetime
+import os
 from tkinter import *
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
@@ -318,12 +319,10 @@ def BookingHistory():
 
 
 def shopequip():
-    import cart
-    exec('cart.py')
+    os.system('python cart.py')
 
 def Team():
-    import SchoolTeam
-    exec('SchoolTeam.py')
+    os.system('python SchoolTeam.py')
 
 def registerinfo():
     reg = tk.Toplevel()
