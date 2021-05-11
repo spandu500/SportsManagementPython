@@ -758,7 +758,7 @@ class Application:
 
         self.left.place(x=0, y=0)
 
-        self.label = Label(self.left, text = 'Soccer Team Builder', font = ('tr 17 bold'))
+        self.label = Label(self.left, text = 'Football Team Builder', font = ('tr 17 bold'))
 
         self.label.place(x=490, y=35)
         
@@ -809,7 +809,7 @@ class Application:
 
 app = Tk()
 
-app.title('Soccer Team Builder')
+app.title('Football Team Builder')
 
 root = Application(app)
 

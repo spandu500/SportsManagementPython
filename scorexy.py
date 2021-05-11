@@ -6,7 +6,7 @@ from tkinter import messagebox
 def cricket_info():
 	
 	try:
-		match = sports.get_match(sports.CRICKET, e1.get() , e2.get())
+		match = sports.get_match(sports.FOOTBALL, e1.get() , e2.get())
 		date.set(match.match_date)
 		time.set(match.match_time)
 		league.set(match.league)
