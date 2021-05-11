@@ -446,6 +446,13 @@ def bookingPage1():
     # Next = Button(book, text="Next", font="tr 10", fg="black",
     #               bg="#41B3A3", command=bookingPage2).place(x=700, y=620)
 
+def view_registered():
+    book = tk.Toplevel()
+    book.geometry("600x650")
+    book.title("Registered Users")
+    book.configure(bg="white")
+    frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
+
 
 def equipmentShop():
     equip = tk.Toplevel()
