@@ -12,14 +12,15 @@ import sports
 
 connect = sqlite3.connect('sports.db')
 connect.cursor()
-connect.execute('CREATE TABLE IF NOT EXISTS Groundbooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
+connect.execute('CREATE TABLE IF NOT EXISTS GroundBooking(Date TEXT, NAME TEXT, PHONE_NUMBER INT, TIME_SLOT VARCHAR, Ground_Location VARCHAR )')
 
 connect.execute(
     'CREATE TABLE IF NOT EXISTS Users(Date TEXT, Name TEXT, Username TEXT, Password TEXT,ConfirmPassword TEXT ,Phone_number INTEGER, Email TEXT, Type TEXT)')
 connect.execute(
-    'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
+    'CREATE TABLE IF NOT EXISTS GroundBooking(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
 connect.execute('CREATE TABLE IF NOT EXISTS equipment(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
-connect.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
+#connect.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
+# connect.execute('CREATE TABLE IF NOT EXISTS ')
 
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
 
@@ -118,42 +119,52 @@ def loggedin(Type):
     headingLabel = Label(headingFrame1, text= f"Hello {Type} SELECT AN OPTION",
                          bg='black', fg='white', font=('tr', 20))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
-
+    
+    booking = tk.Button(window2, text="BOOK TURF", font="tr 25 bold", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=bookingPage1)
+    booking.place(x=200, y=300, width=600)
+    booking_history = Button(window2, text="BOOKING HISTORY", font="tr 25 bold", fg="black", bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command= Booking_History)
+    booking_history.place(x=200, y=400, width=600)
+    coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=SchoolTeam)
+    coach.place(x=150, y=100, width=600)
+    
+    # if Type != "Admin":
     btn1 = Button(window2, text="Add Equipment Details",
-                  bg='black', fg='white', command=addequipment)
+                bg='black', fg='white', command=addequipment)
     btn1.place(relx=0.28, rely=0.3, relwidth=0.45, relheight=0.1)
 
     btn2 = Button(window2, text="Remove Equipment from Inventory",
-                  bg='black', fg='white', command=delete)
+                bg='black', fg='white', command=delete)
     btn2.place(relx=0.28, rely=0.4, relwidth=0.45, relheight=0.1)
 
     btn3 = Button(window2, text="View Inventory",
-                  bg='black', fg='white', command=View)
+                bg='black', fg='white', command=View)
     btn3.place(relx=0.28, rely=0.5, relwidth=0.45, relheight=0.1)
 
     btn4 = Button(window2, text="Issue Items to Students",
-                  bg='black', fg='white', command=issueBook)
+                bg='black', fg='white', command=issueBook)
     btn4.place(relx=0.28, rely=0.6, relwidth=0.45, relheight=0.1)
+    
 
+    # if Type !="('Student',)":   #not working
+    btn5 = Button(window2, text="Return Equipment", bg='black',
+                fg='white', command=returnBook)
+    btn5.place(relx=0.28, rely=0.7, relwidth=0.45, relheight=0.1)
 
+    # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
+    # coach.place(x=150, y=100, width=600)
 
-    if Type !="('Student',)":   #not working
-        btn5 = Button(window2, text="Return Equipment", bg='black',
-                  fg='white', command=returnBook)
-        btn5.place(relx=0.28, rely=0.7, relwidth=0.45, relheight=0.1)
-
-        # coach = tk.Button(window2, text="MANAGE TEAMS", font="tr 20 bold", fg="black", bd=4, command=ecoach)
-        # coach.place(x=150, y=100, width=600)
-
-        btn6 = Button(window2, text="Book Turf/PlayGround",
-                    bg='black', fg="white", bd=4, command=bookingPage1)
-        btn6.place(relx=0.28, rely=0.8, relwidth=0.45, relheight=0.1)
-        btn7 = Button(window2, text="Shop Equipments",
-                    bg="black", fg = 'white', bd=4, command=equipmentShop)
-        btn7.place(relx=0.28, rely=0.9, relwidth=0.45, relheight=0.1)
-        btn8 = Button(window2, text="Ground Booking History",
-                    bg="black", fg='white', bd=4, command=Booking_History)
-        btn8.place(relx=0.28, rely=1.0, relwidth=0.45, relheight=0.1)
+    btn6 = Button(window2, text="Book Turf/PlayGround",
+                bg='black', fg="white", bd=4, command=bookingPage1)
+    btn6.place(relx=0.28, rely=0.8, relwidth=0.45, relheight=0.1)
+    btn7 = Button(window2, text="Shop Equipments",
+                bg="black", fg = 'white', bd=4, command=equipmentShop)
+    btn7.place(relx=0.28, rely=0.9, relwidth=0.45, relheight=0.1)
+    btn8 = Button(window2, text="Ground Booking History",
+                bg="black", fg='white', bd=4, command=Booking_History)
+    btn8.place(relx=0.28, rely=1.1, relwidth=0.45, relheight=0.1)
+    btn9 = Button(window2, text="Team Builder",
+                bg="black", fg='white', bd=4, command=SchoolTeam)
+    btn9.place(relx=0.28, rely=1.1, relwidth=0.45, relheight=0.1)
 
 
 def match_info():
@@ -278,22 +289,22 @@ def Booking_History():
         baddress = Booked_address.get()
 
         z = connect.cursor()
-        z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM BookedGround WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
+        z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM GroundBooking WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
                   (bname, bphone, baddress))
         found2 = z.fetchone()
         if found2:
             print("Booking found")
             connect.cursor()
-            a = connect.execute('SELECT * FROM BookedGround')
+            a = connect.execute('SELECT * FROM GroundBooking')
             b = Entry(hist, a, fg="black")
             # b.place(x=130, y=290, width=600, height=100)
             # b.insert(END,)
             i = 0
-            for BookedGround in a:
-                for j in range(len(BookedGround)):
+            for GroundBooking in a:
+                for j in range(len(GroundBooking)):
                     b = Entry(hist, fg="black")
                     b.place(x=130, y=290, width=600, height=100)
-                    b.insert(END, BookedGround[j])
+                    b.insert(END, GroundBooking[j])
                     i = i+1
             b.place(x=150, y=290)
             connect.commit()
@@ -360,7 +371,7 @@ def Book_now():
         Timeentry1 = Timeentry.get()
         Locationentry1 = Locationentry.get()
         y = connect.cursor()
-        y.execute('SELECT TIME_SLOT,Ground_Location FROM BookedGround WHERE TIME_SLOT=? AND Ground_Location=?',
+        y.execute('SELECT Date,Ground_Location FROM GroundBooking WHERE Date=? AND Ground_Location=?',
                   (Timeentry1, Locationentry1))
         found1 = y.fetchone()
         if found1:
@@ -370,7 +381,7 @@ def Book_now():
         else:
             print("booking start")
             connect.cursor()
-            connect.execute('INSERT INTO BookedGround(Datestamp , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
+            connect.execute('INSERT INTO GroundBooking(Date , NAME , PHONE_NUMBER , TIME_SLOT, Ground_Location)'
                          'VALUES(?,?,?,?,?)', (BDatestamp, nmentry1, Phnentry1, Timeentry1, Locationentry1))
             connect.commit()
             # connect.close()
@@ -637,11 +648,11 @@ def equipmentRegister():
     Manufacturer = equipmentInfo3.get()
     status = equipmentInfo4.get()
     status = status.lower()
-
-    insertequipments = "insert into "+equipmentTable + \
-        " values('"+eid+"','"+title+"','"+Manufacturer+"','"+status+"')"
+    x = connect.cursor()
+    insertequipments = "INSERT OR IGNORE INTO equipment(eid, title, Manufacturer, status) VALUES ('%s', '%s', '%s');"
     try:
-        connect.execute(insertequipments)
+       #         connect.execute(insert_command % (datestamp, username1, password1))
+        x.execute(insertequipments % (eid,title,Manufacturer))
         connect.commit()
         messagebox.showinfo('Success', "equipment added successfully")
     except:
@@ -731,9 +742,9 @@ def deleteBook():
         connect.commit()
         connect.execute(deleteIssue)
         connect.commit()
-        messagebox.showinfo('Success', "Book Record Deleted Successfully")
+        messagebox.showinfo('Success', "Equipment Record Deleted Successfully")
     except:
-        messagebox.showinfo("Please check Book ID")
+        messagebox.showinfo("Please check Equipment ID")
 
     print(eid)
 
@@ -758,15 +769,15 @@ def delete():
     headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Delete Book",
+    headingLabel = Label(headingFrame1, text="Remove Equipment",
                          bg='black', fg='white', font=('tr', 15))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
     labelFrame = Frame(root, bg='black')
     labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
-    # Book ID to Delete
-    lb2 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    # Equipment ID to Delete
+    lb2 = Label(labelFrame, text="Equipment ID : ", bg='black', fg='white')
     lb2.place(relx=0.05, rely=0.5)
 
     bookInfo1 = Entry(labelFrame)
@@ -817,9 +828,9 @@ def issue():
                 status = False
 
         else:
-            messagebox.showinfo("Error", "Book ID not present")
+            messagebox.showinfo("Error", "Equipment ID not present")
     except:
-        messagebox.showinfo("Error", "Can't fetch Book IDs")
+        messagebox.showinfo("Error", "Can't fetch Equipment IDs")
 
     issueSql = "insert into "+issueTable+" values ('"+eid+"','"+issueto+"')"
     show = "select * from "+issueTable
@@ -865,15 +876,15 @@ def issueBook():
     headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Issue Book",
+    headingLabel = Label(headingFrame1, text="Issue Equipment",
                          bg='black', fg='white', font=('tr', 15))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
     labelFrame = Frame(root, bg='black')
     labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
-    # Book ID
-    lb1 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    # Equipment ID
+    lb1 = Label(labelFrame, text="Equipment ID : ", bg='black', fg='white')
     lb1.place(relx=0.05, rely=0.2)
 
     inf1 = Entry(labelFrame)
@@ -924,9 +935,9 @@ def returnn():
                 status = False
 
         else:
-            messagebox.showinfo("Error", "Book ID not present")
+            messagebox.showinfo("Error", "Equipment ID not present")
     except:
-        messagebox.showinfo("Error", "Can't fetch Book IDs")
+        messagebox.showinfo("Error", "Can't fetch Equipment IDs")
 
     issueSql = "delete from "+issueTable+" where eid = '"+eid+"'"
 
@@ -943,7 +954,7 @@ def returnn():
             messagebox.showinfo('Success', "Book Returned Successfully")
         else:
             alleid.clear()
-            messagebox.showinfo('Message', "Please check the book ID")
+            messagebox.showinfo('Message', "Please check the Equipment ID")
             root.destroy()
             return
     except:
@@ -971,15 +982,15 @@ def returnBook():
     headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Return Book",
+    headingLabel = Label(headingFrame1, text="Return Equipment",
                          bg='black', fg='white', font=('tr', 15))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
     labelFrame = Frame(root, bg='black')
     labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
-    # Book ID to Delete
-    lb1 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    # Equipment ID to Delete
+    lb1 = Label(labelFrame, text="Equipment ID : ", bg='black', fg='white')
     lb1.place(relx=0.05, rely=0.5)
 
     bookInfo1 = Entry(labelFrame)
