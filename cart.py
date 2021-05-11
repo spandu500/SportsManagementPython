@@ -20,6 +20,7 @@ class ShoppingCart(Frame):
             
         def buy():
             bitem = tk.Button(self, text="Buy itemsF", font="tr", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=print('items')) 
+            bitem.place(x=400, y=100, width=100)
 
         def addpress():
             self.adding=not self.adding
