@@ -3,10 +3,10 @@ from tkinter import *
 import sports
 from tkinter import messagebox
 
-def cricket_info():
+def football_info():
 	
 	try:
-		match = sports.get_match(sports.FOOTBALL, e1.get() , e2.get())
+		match = sports.get_match(sports.SOCCER, e1.get() , e2.get())
 		date.set(match.match_date)
 		time.set(match.match_time)
 		league.set(match.league)
@@ -70,7 +70,7 @@ e2.grid(row=1, column=1)
 
 # creating a button using the widget
 # Button that will call the submit function
-b = Button(master, text="Show", command=cricket_info )
+b = Button(master, text="Show", command=football_info )
 b.grid(row=0, column=2,columnspan=2, rowspan=2,padx=5, pady=5)
 
 mainloop()

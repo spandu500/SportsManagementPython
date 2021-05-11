@@ -37,7 +37,6 @@ class Application:
             #==========================================LABELS======================================================
 
             self.label = Label(self.reg, text = 'Register a new player', font = ('tr 17 bold'))
-
             self.label.place(x=50, y=50)
 
             self.fname = Label(self.reg, text = 'Enter the first name: ', font = ('tr 12 bold'))
@@ -771,11 +770,11 @@ class Application:
 
         self.button2.place(x = 630, y = 600)
 
-        self.button3 = Button(self.left, text = 'Build LineUps', font = ('tr 15 bold'), command = lambda:notyet())
+        self.button3 = Button(self.left, text = 'Build LineUps', font = ('tr 15 bold'), command = lambda:remmem())
 
         self.button3.place(x = 1030, y = 600)
 
-        def notyet():
+        def remmem():
         	self.left.place_forget()
         	self.notyetnow = Frame(master, width = 1366, height = 766)
         	self.notyetnow.place(x = 0, y = 0)
