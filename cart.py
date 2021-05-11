@@ -2,6 +2,7 @@
 from tkinter import Tk, W, E
 from tkinter.ttk import Frame, Button, Entry, Style
 import tkinter as tk
+import os
 from PIL import Image, ImageTk
 #Its not pretty but it add and removes from list displays the list and has a quit button
 
@@ -122,6 +123,28 @@ class ShoppingCart(Frame):
 
         self.pack()
 
+def rec():
+    os.system('python reciept.py')
+
+# def reciept():
+#     price1 = 3000
+#     qty1 = 3
+#     total1 = price1*qty1
+
+#     price2 = 5000
+#     qty2 = 4
+#     total2 = price1*qty2
+
+#     l = Label(tk,text='---------DUMMY-RECIEPT----------')
+#     l.pack()
+#     heading = Label(tk,text='PRICE\tQTY\tTOTAL')
+#     heading.pack()
+
+#     item1 = Label(tk,text=f'{price1}\t{qty1}\t{total1}')
+#     item1.pack()
+
+#     item2 = Label(tk,text=f'{price2}\t{qty2}\t{total2}')
+#     item2.pack()
 
 def getList(self):
     items='Your Shopping Cart Contains: \n'
@@ -133,7 +156,7 @@ def mainshop():
     root = Tk()
     app = ShoppingCart()
     root.configure(background="white")
-    bitem = tk.Button(root, text="Buy items", font="tr", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=print('items')) 
+    bitem = tk.Button(root, text="Buy items", font="tr", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=rec) 
     bitem.place(x=865, y=400, width=160)
     root.mainloop()
 
