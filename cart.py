@@ -18,8 +18,6 @@ class ShoppingCart(Frame):
             sc.delete("1.0", tk.END)
             sc.insert(tk.END, getList(self))
             
-        def buy():
-            bitem = tk.Button(self, text="Buy itemsF", font="tr", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=print('items')) 
 
         def addpress():
             self.adding=not self.adding
@@ -135,6 +133,8 @@ def mainshop():
     root = Tk()
     app = ShoppingCart()
     root.configure(background="white")
+    bitem = tk.Button(root, text="Buy items", font="tr", fg="black",bd=4, bg="#E8A87C", activebackground="#C38D9E", activeforeground="PURPLE", command=print('items')) 
+    bitem.place(x=865, y=400, width=160)
     root.mainloop()
 
 if __name__ == '__main__':

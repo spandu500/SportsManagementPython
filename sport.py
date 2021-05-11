@@ -4,11 +4,11 @@ import datetime
 from tkinter import *
 import SchoolTeam
 import shop
+import sports
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import Scrollbar
-import sports
 
 connect = sqlite3.connect('sports.db')
 connect.cursor()
@@ -116,7 +116,7 @@ def loggedin(Type):
     window2.resizable(False, False)
     headingFrame1 = Frame(window2, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
-    headingLabel = Label(headingFrame1, text= f"Hello {Type} SELECT AN OPTION",
+    headingLabel = Label(headingFrame1, text= f"Hello {Type} select an option",
                          bg='black', fg='white', font=('tr', 20))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
     
@@ -463,6 +463,7 @@ def view_registered():
     book.title("Registered Users")
     book.configure(bg="white")
     frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
+    
 
 
 def equipmentShop():
