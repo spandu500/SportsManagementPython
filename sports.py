@@ -2,7 +2,7 @@ import sqlite3
 import tkinter as tk
 import datetime
 from tkinter import *
-import SchoolTeam
+# import SchoolTeam
 import shop
 from PIL import ImageTk, Image  # PIL -> Pillow
 from tkinter import ttk
@@ -19,7 +19,8 @@ connect.execute(
 connect.execute(
     'CREATE TABLE IF NOT EXISTS BookedGround(Date TEXT, NAME TEXT, Phone_number INTEGER, Ground_Location TEXT)')
 connect.execute('CREATE TABLE IF NOT EXISTS equipment(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
-connect.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
+#connect.execute('CREATE TABLE IF NOT EXISTS equipment_issued(eid varchar(30), title varchar(30), Manufacturer varchar(30), status varchar(30))')
+connect.execute('CREATE TABLE IF NOT EXISTS ')
 
 insert_command = """INSERT OR IGNORE INTO Users(date, username, password) VALUES('%s', '%s', '%s');"""
 
@@ -360,7 +361,7 @@ def Book_now():
         Timeentry1 = Timeentry.get()
         Locationentry1 = Locationentry.get()
         y = connect.cursor()
-        y.execute('SELECT TIME_SLOT,Ground_Location FROM BookedGround WHERE TIME_SLOT=? AND Ground_Location=?',
+        y.execute('SELECT Date,Ground_Location FROM BookedGround WHERE Date=? AND Ground_Location=?',
                   (Timeentry1, Locationentry1))
         found1 = y.fetchone()
         if found1:
@@ -630,11 +631,11 @@ def equipmentRegister():
     Manufacturer = equipmentInfo3.get()
     status = equipmentInfo4.get()
     status = status.lower()
-
-    insertequipments = "insert into "+equipmentTable + \
-        " values('"+eid+"','"+title+"','"+Manufacturer+"','"+status+"')"
+    x = connect.cursor()
+    insertequipments = "INSERT OR IGNORE INTO equipment(eid, title, Manufacturer, status) VALUES ('%s', '%s', '%s');"
     try:
-        connect.execute(insertequipments)
+       #         connect.execute(insert_command % (datestamp, username1, password1))
+        x.execute(insertequipments % (eid,title,Manufacturer))
         connect.commit()
         messagebox.showinfo('Success', "equipment added successfully")
     except:
@@ -751,7 +752,7 @@ def delete():
     headingFrame1 = Frame(root, bg="#FFBB00", bd=5)
     headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Delete Book",
+    headingLabel = Label(headingFrame1, text="Remove Equipment",
                          bg='black', fg='white', font=('tr', 15))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
@@ -759,7 +760,7 @@ def delete():
     labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
     # Book ID to Delete
-    lb2 = Label(labelFrame, text="Book ID : ", bg='black', fg='white')
+    lb2 = Label(labelFrame, text="Equipment ID : ", bg='black', fg='white')
     lb2.place(relx=0.05, rely=0.5)
 
     bookInfo1 = Entry(labelFrame)
