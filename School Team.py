@@ -796,7 +796,7 @@ class Application:
         self.reg_label = Label(self.left, image=self.register)
         self.reg_label.place(x = 150, y = 150)
 
-        self.lookup = PhotoImage(file = 'lookup players.png')
+        self.lookup = PhotoImage(file = 'lookup_players.png')
         self.lookup_label = Label(self.left, image=self.lookup)
         self.lookup_label.place(x = 550, y = 150)
 
