@@ -88,7 +88,7 @@ def logininfo():
 def loggedin(user):
     messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!! Welcome to The Club")
     window2 = Toplevel()
-    window2.geometry("900x900")
+    window2.geometry("900x700")
     window2.configure(bg="orange")
     window2.title("HOME PAGE")
     window2.resizable(False, False)
