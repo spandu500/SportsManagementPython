@@ -335,9 +335,7 @@ def registerinfo():
     headingFrame2.place(relx=0.2, rely=0.1, relwidth=0.6, relheight=0.16)
     headingLabelr = Label(headingFrame2, text="ADD NEW USER",
                           bg='black', fg='white', font=('tr', 20))
-    # ye idhar change kiya fir bhi main window me change hota hai
-    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)
-    # window close nahi hote automatically
+    headingLabelr.place(relx=0, rely=0, relwidth=1, relheight=1)ijp
 
     Name = Label(reg, text="NAME", fg="black", bg="white",
                  font="Bold 10").place(x=250, y=200)

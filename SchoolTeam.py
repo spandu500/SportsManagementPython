@@ -54,7 +54,7 @@ class Application:
             self.shirtnumber = Label(self.reg, text = 'Please fill in the Shirt Number: ', font = ('tr 12 bold'))
             self.shirtnumber.place(x = 50, y = 425)
 
-            self.attributes = Label(self.reg, text = 'Please fill in the attributes: ', font = ('tr 12 bold'))
+            self.attributes = Label(self.reg, text = 'Please fill in the Sport Type: ', font = ('tr 12 bold'))
             self.attributes.place(x = 50, y = 500)
 
             #=================================================ENTRIES================================================
@@ -175,7 +175,7 @@ class Application:
             			self.lb2 = Label(self.display, text = 'Shirt Number', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
             			self.lb2.place(x = 925, y = 0)
 
-            			self.lb2 = Label(self.display, text = 'Attributes', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+            			self.lb2 = Label(self.display, text = 'Sport Type', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
             			self.lb2.place(x = 1125, y = 0)
 
             			#X positions for labels
@@ -782,11 +782,29 @@ class Application:
         	self.newlabel = Label(self.notyetnow, text = 'THIS FEATURE IS UNAVAILABLE', font = ('tr 20 bold'), fg = 'steelblue')
         	self.newlabel.place(x= 450, y = 200)
 
+			# self.lab = Label(self.notyetnow,text = 'Remove a new player', font = ('tr 17 bold'))
+			# self.lab.place(x=50, y=50)
+
+
+			# self.fname_ent = Entry(self.notyetnow, width = 20, font = ('tr 15'))
+			# self.fname_ent.place(x = 50, y = 160)
+
+			# self.submit = Button(self.notyetnow, text = 'Submit', font = ('tr 20 bold'), command = lambda: get_values())
+			# self.submit.place(x = 75, y = 580)
+
+
+			# def get_values():
+			# 	self.player_fname = self.fname_ent.get()
+			# 	sql = "DROP FROM Players where (Player_FirstName) VALUES(?) "
+			# 	db_cursor.execute(sql, (self.player_fname))
+			# 	connect.commit()
+
         	self.newlabel = Label(self.notyetnow, text = 'Work In Progress', font = ('tr 17 bold'), fg = 'steelblue')
         	self.newlabel.place(x= 520, y = 300)
 
         	self.somebutton = Button(self.notyetnow, text = 'BACK', font = ('tr 15 bold'), command = lambda: backnow())
         	self.somebutton.place(x = 0, y = 0)
+
 
  
 
