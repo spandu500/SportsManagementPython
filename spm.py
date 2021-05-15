@@ -97,92 +97,109 @@ def loggedin(user):
     headingLabel = Label(headingFrame1, text= f"Hello {user} Select an Option",
                          bg='black', fg='white', font=('tr', 20))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
-    coach = tk.Button(window2, text="MANAGE TEAM", font="tr 20 bold", fg="black", bd=4, command=Team)
+    coach = tk.Button(window2, text="MANAGE TEAM", font="tr 20 ", fg="black", bd=4, command=Team)
     coach.place(x=200, y=250, width=500)
-    bturf = tk.Button(window2, text="BOOK TURF", font="tr 20 bold", fg="black", bd=4, command=BookingPage)
+    bturf = tk.Button(window2, text="BOOK TURF", font="tr 20 ", fg="black", bd=4, command=BookingPage)
     bturf.place(x=200, y=350, width=500)
-    bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 bold", fg="black", bd=4, command=BookingHistory)
+    bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 ", fg="black", bd=4, command=BookingHistory)
     bookturf.place(x=200, y=450, width=500)
-    shopeq = tk.Button(window2, text="SHOP EQUIPMENT", font="tr 20 bold", fg="black", bd=4, command=shopequip)
+    shopeq = tk.Button(window2, text="SHOP EQUIPMENT", font="tr 20 ", fg="black", bd=4, command=shopequip)
     shopeq.place(x=200, y=550, width=500)
 
 def BookingPage():
     book = tk.Toplevel()
-    book.geometry("600x650")
+    book.geometry("600x900")
     book.title("AVAILABLE GROUNDS")
     book.configure(bg="white")
-    frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
+    frame2 = Frame(book, bg="white").place(x=0, y=0, height=600, width=650)
 
     # 1st turf
-    a1 = Label(book, text="D.S Sports Ground ", font="tr 15",
+    a1 = Label(book, text="Mumbai Football Arena", font="tr 15",
                fg="black", bg="white").place(x=200, y=120, width=300)
     a2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=150)
-    a3 = Label(book, text="A.C. Patil School, Sector 8,",
+    a3 = Label(book, text="35, Veera Desai Rd, Azad Nagar,",
                font="tr 10", fg="black", bg="white").place(x=190, y=150)
-    a4 = Label(book, text="Near Reena Mokal Hospital, Kandivali West, Mumbai, Maharashtra 400067",
+    a4 = Label(book, text="Andheri West, Mumbai, Maharashtra 400053",
                font="tr 10", fg="black", bg="white").place(x=190, y=170)
     a5 = Label(book, text="Phone:", font="tr 10",
                fg="black", bg="White").place(x=120, y=200)
     a6 = Label(book, text="8852023645", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=200)
     b1 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b1.place(x=300, y=250)
 
     # 2nd turf
-    b11 = Label(book, text="J.K turf", font="tr 15", fg="black",
+    b11 = Label(book, text="Goalster Sports Arena ", font="tr 15", fg="black",
                 bg="white").place(x=200, y=300, width=300)
     b12 = Label(book, text="ADDRESS:", font="tr 10",
                 fg="black", bg="white").place(x=120, y=350)
-    b13 = Label(book, text="J.K turf, near scientific device company",
+    b13 = Label(book, text="Gate no.1, St Joseph High School, Manuel Gonsalves Rd",
                 font="tr 10", fg="black", bg="white").place(x=190, y=350)
-    b14 = Label(book, text="Kausa, Mumbra, Thane, Maharashtra 400612",
+    b14 = Label(book, text="Bandra West, Mumbai, Maharashtra 400050",
                 font="tr 10", fg="black", bg="white").place(x=190, y=370)
     b15 = Label(book, text="Phone:", font="tr 10",
                 fg="black", bg="White").place(x=120, y=390)
     b16 = Label(book, text="8254682025", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b2.place(x=300, y=420)
 
     # 3rd Ground
-    c1 = Label(book, text="Dribble Football Turf", font="tr 15", fg="black",
+    c1 = Label(book, text="Battlefield by Reyes", font="tr 15", fg="black",
                bg="white").place(x=200, y=500, width=300)
     c2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=550)
-    c3 = Label(book, text="J.K turf, near viviana mall",
+    c3 = Label(book, text="Chintamani Plaza, Near WEH Metro Station,",
                font="tr 10", fg="black", bg="white").place(x=190, y=550)
-    c4 = Label(book, text="Thane, Maharashtra 400612", font="tr 10",
+    c4 = Label(book, text="Andheri (East) Maharashtra 400612", font="tr 10",
                fg="black", bg="white").place(x=190, y=570)
     c5 = Label(book, text="Phone:", font="tr 10",
                fg="black", bg="White").place(x=120, y=600)
     c6 = Label(book, text="8254682025", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=600)
     b3 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b3.place(x=300, y=620)
 
+        # 4th Ground
+    d1 = Label(book, text="Green Spaces Sports Zone", font="tr 15", fg="black",
+               bg="white").place(x=200, y=700, width=300)
+    d2 = Label(book, text="ADDRESS:", font="tr 10",
+               fg="black", bg="white").place(x=120, y=750)
+    d3 = Label(book, text="Sindhi Society Gymkhana, Off Hemu Kalani Marg,",
+               font="tr 10", fg="black", bg="white").place(x=190, y=750)
+    d4 = Label(book, text="Chembur Maharashtra 400612", font="tr 10",
+               fg="black", bg="white").place(x=190, y=770)
+    d5 = Label(book, text="Phone:", font="tr 10",
+               fg="black", bg="White").place(x=120, y=800)
+    d6 = Label(book, text="8254682025", font="tr 10 ",
+               fg="black", bg="White").place(x=180, y=800)
+    b3 = Button(book, text="Book Now", font="tr 10", fg="black",
+                bd=1, bg="orange", command=Book_now)
+    b3.place(x=300, y=820)
+
     Back1 = Button(book, text="Back", font="tr 10", fg="black",
-                   bg="#41B3A3", command=Back_page).place(x=650, y=620)
+                   bg="orange", command=Back_page).place(x=500, y=820)
 
 def Book_now():
     nw = tk.Toplevel()
-    nw.geometry("900x800+100+50")
-    nw.title("BOOK SLOT")
-    nw.configure(bg="white")
+    nw.geometry("900x700")
+    nw.title("BOOK-SLOT")
+    nw.configure(bg="violet")
     frame5 = Frame(nw, bg="white").place(x=100, y=80, height=500, width=650)
-    lb = Label(nw, text="ENTER DETAILS", font="tr 20 bold",
+    lb = Label(nw, text="ENTER DETAILS", font="tr 20 ",
                fg="#003b73", bg="white").place(x=320, y=150)
-    lb1 = Label(nw, text="NAME", font="tr 12 bold",
+    lb1 = Label(nw, text="NAME", font="tr 12",
                 fg="black", bg="white").place(x=200, y=210)
-    lb2 = Label(nw, text="PHONE NUMBER", font="tr 12 bold",
+    lb2 = Label(nw, text="PHONE NUMBER", font="tr 12",
                 fg="black", bg="white").place(x=200, y=250)
-    lb3 = Label(nw, text="TIME SLOT", font="tr 12 bold",
+    lb3 = Label(nw, text="TIME SLOT", font="tr 12 ",
                 fg="black", bg="white").place(x=200, y=300)
     lb4 = Label(nw, text="Ground Location & Details",
-                font="tr 12 bold", fg="black", bg="white").place(x=150, y=350)
+                font="tr 12", fg="black", bg="white").place(x=150, y=350)
     nme = StringVar
     Phn = IntVar
     optTime = ["11AM- 01PM",
@@ -194,12 +211,10 @@ def Book_now():
     Time.set(optTime[0])
     drop1 = OptionMenu(nw, Time, *optTime)
     drop1.place(x=540, y=300, height=15, width=20)
-    optNameAddress = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
-                      "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                      "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                      "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
-                      "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
-                      "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
+    optNameAddress = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053 ",
+                      "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050",
+                      "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East)",
+                      "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
                       ]
     NameAddress = StringVar()
     NameAddress.set(optNameAddress[0])
@@ -246,7 +261,7 @@ def Book_now():
 
 def BookingHistory():
     hist = tk.Toplevel()
-    hist.geometry("900x800+90+50")
+    hist.geometry("900x800")
     hist.title("BOOK")
     hist.configure(bg="white")
     frame8 = Frame(hist, bg="white").place(x=100, y=80, height=500, width=650)
@@ -257,14 +272,12 @@ def BookingHistory():
     h2 = Label(hist, text="PHONE NUMBER", font="tr 12 bold",
                fg="black", bg="white").place(x=400, y=210)
     h3 = Label(hist, text="Ground Location & Details",
-               font="tr 12 bold", fg="black", bg="white").place(x=150, y=250)
+               font="tr 12 bold", fg="black", bg="white").place(x=100, y=250)
 
-    Booked_Location = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
-                       "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                       "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                       "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
-                       "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
-                       "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
+    Booked_Location = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053, Phone:8857023645 ",
+                      "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050, Phone: 8254682025",
+                      "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East), Phone : 8254682025",
+                      "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
                        ]  # Idhar locations change kar...
 
     Booked_NameAddress = StringVar()
@@ -370,7 +383,7 @@ def registerinfo():
     RType.place(x=450, y=500)
 
     Back1 = Button(reg, text="Back", font="tr 10", fg="black",
-                   bg="#41B3A3", command=Back_page).place(x=650, y=620)
+                   bg="orange", command=Back_page).place(x=650, y=620)
 
     def registerinfo1():
         print("registerinfo1")
