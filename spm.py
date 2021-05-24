@@ -86,9 +86,9 @@ def logininfo():
         messagebox.showerror('Oops!', 'Username or Password is incorrect.')
 
 def loggedin(user):
-    messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!! Welcome to The Club")
+    messagebox.showinfo("LOGIN!!", "LOGIN SUCCESSFULL!! Welcome to The Club")
     window2 = Toplevel()
-    window2.geometry("900x900")
+    window2.geometry("900x600")
     window2.configure(bg="orange")
     window2.title("HOME PAGE")
     window2.resizable(False, False)
@@ -97,92 +97,109 @@ def loggedin(user):
     headingLabel = Label(headingFrame1, text= f"Hello {user} Select an Option",
                          bg='black', fg='white', font=('tr', 20))
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
-    coach = tk.Button(window2, text="MANAGE TEAM", font="tr 20 bold", fg="black", bd=4, command=Team)
-    coach.place(x=200, y=250, width=500)
-    bturf = tk.Button(window2, text="BOOK TURF", font="tr 20 bold", fg="black", bd=4, command=BookingPage)
-    bturf.place(x=200, y=350, width=500)
-    bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 bold", fg="black", bd=4, command=BookingHistory)
-    bookturf.place(x=200, y=450, width=500)
-    shopeq = tk.Button(window2, text="SHOP EQUIPMENT", font="tr 20 bold", fg="black", bd=4, command=shopequip)
-    shopeq.place(x=200, y=550, width=500)
+    coach = tk.Button(window2, text="MANAGE TEAM", font="tr 20 ", fg="black", bd=4, command=Team)
+    coach.place(x=200, y=200, width=500)
+    bturf = tk.Button(window2, text="BOOK TURF", font="tr 20 ", fg="black", bd=4, command=BookingPage)
+    bturf.place(x=200, y=300, width=500)
+    bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 ", fg="black", bd=4, command=BookingHistory)
+    bookturf.place(x=200, y=400, width=500)
+    shopeq = tk.Button(window2, text="SHOP EQUIPMENT", font="tr 20 ", fg="black", bd=4, command=shopequip)
+    shopeq.place(x=200, y=500, width=500)
 
 def BookingPage():
     book = tk.Toplevel()
-    book.geometry("600x650")
+    book.geometry("600x900")
     book.title("AVAILABLE GROUNDS")
     book.configure(bg="white")
-    frame2 = Frame(book, bg="white").place(x=100, y=50, height=600, width=650)
+    frame2 = Frame(book, bg="white").place(x=0, y=0, height=600, width=650)
 
     # 1st turf
-    a1 = Label(book, text="D.S Sports Ground ", font="tr 15",
+    a1 = Label(book, text="Mumbai Football Arena", font="tr 15",
                fg="black", bg="white").place(x=200, y=120, width=300)
     a2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=150)
-    a3 = Label(book, text="A.C. Patil School, Sector 8,",
+    a3 = Label(book, text="35, Veera Desai Rd, Azad Nagar,",
                font="tr 10", fg="black", bg="white").place(x=190, y=150)
-    a4 = Label(book, text="Near Reena Mokal Hospital, Kandivali West, Mumbai, Maharashtra 400067",
+    a4 = Label(book, text="Andheri West, Mumbai, Maharashtra 400053",
                font="tr 10", fg="black", bg="white").place(x=190, y=170)
     a5 = Label(book, text="Phone:", font="tr 10",
                fg="black", bg="White").place(x=120, y=200)
     a6 = Label(book, text="8852023645", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=200)
     b1 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b1.place(x=300, y=250)
 
     # 2nd turf
-    b11 = Label(book, text="J.K turf", font="tr 15", fg="black",
+    b11 = Label(book, text="Goalster Sports Arena ", font="tr 15", fg="black",
                 bg="white").place(x=200, y=300, width=300)
     b12 = Label(book, text="ADDRESS:", font="tr 10",
                 fg="black", bg="white").place(x=120, y=350)
-    b13 = Label(book, text="J.K turf, near scientific device company",
+    b13 = Label(book, text="Gate no.1, St Joseph High School, Manuel Gonsalves Rd",
                 font="tr 10", fg="black", bg="white").place(x=190, y=350)
-    b14 = Label(book, text="Kausa, Mumbra, Thane, Maharashtra 400612",
+    b14 = Label(book, text="Bandra West, Mumbai, Maharashtra 400050",
                 font="tr 10", fg="black", bg="white").place(x=190, y=370)
     b15 = Label(book, text="Phone:", font="tr 10",
                 fg="black", bg="White").place(x=120, y=390)
     b16 = Label(book, text="8254682025", font="tr 10 ",
                 fg="black", bg="White").place(x=180, y=390)
     b2 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b2.place(x=300, y=420)
 
     # 3rd Ground
-    c1 = Label(book, text="Dribble Football Turf", font="tr 15", fg="black",
+    c1 = Label(book, text="Battlefield by Reyes", font="tr 15", fg="black",
                bg="white").place(x=200, y=500, width=300)
     c2 = Label(book, text="ADDRESS:", font="tr 10",
                fg="black", bg="white").place(x=120, y=550)
-    c3 = Label(book, text="J.K turf, near viviana mall",
+    c3 = Label(book, text="Chintamani Plaza, Near WEH Metro Station,",
                font="tr 10", fg="black", bg="white").place(x=190, y=550)
-    c4 = Label(book, text="Thane, Maharashtra 400612", font="tr 10",
+    c4 = Label(book, text="Andheri (East) Maharashtra 400612", font="tr 10",
                fg="black", bg="white").place(x=190, y=570)
     c5 = Label(book, text="Phone:", font="tr 10",
                fg="black", bg="White").place(x=120, y=600)
     c6 = Label(book, text="8254682025", font="tr 10 ",
                fg="black", bg="White").place(x=180, y=600)
     b3 = Button(book, text="Book Now", font="tr 10", fg="black",
-                bd=1, bg="#41B3A3", command=Book_now)
+                bd=1, bg="orange", command=Book_now)
     b3.place(x=300, y=620)
 
+        # 4th Ground
+    d1 = Label(book, text="Green Spaces Sports Zone", font="tr 15", fg="black",
+               bg="white").place(x=200, y=700, width=300)
+    d2 = Label(book, text="ADDRESS:", font="tr 10",
+               fg="black", bg="white").place(x=120, y=750)
+    d3 = Label(book, text="Sindhi Society Gymkhana, Off Hemu Kalani Marg,",
+               font="tr 10", fg="black", bg="white").place(x=190, y=750)
+    d4 = Label(book, text="Chembur Maharashtra 400612", font="tr 10",
+               fg="black", bg="white").place(x=190, y=770)
+    d5 = Label(book, text="Phone:", font="tr 10",
+               fg="black", bg="White").place(x=120, y=800)
+    d6 = Label(book, text="8254682025", font="tr 10 ",
+               fg="black", bg="White").place(x=180, y=800)
+    b3 = Button(book, text="Book Now", font="tr 10", fg="black",
+                bd=1, bg="orange", command=Book_now)
+    b3.place(x=300, y=820)
+
     Back1 = Button(book, text="Back", font="tr 10", fg="black",
-                   bg="#41B3A3", command=Back_page).place(x=650, y=620)
+                   bg="orange", command=Back_page).place(x=500, y=820)
 
 def Book_now():
     nw = tk.Toplevel()
-    nw.geometry("900x800+100+50")
-    nw.title("BOOK SLOT")
-    nw.configure(bg="white")
+    nw.geometry("900x700")
+    nw.title("BOOK-SLOT")
+    nw.configure(bg="violet")
     frame5 = Frame(nw, bg="white").place(x=100, y=80, height=500, width=650)
-    lb = Label(nw, text="ENTER DETAILS", font="tr 20 bold",
+    lb = Label(nw, text="ENTER DETAILS", font="tr 20 ",
                fg="#003b73", bg="white").place(x=320, y=150)
-    lb1 = Label(nw, text="NAME", font="tr 12 bold",
+    lb1 = Label(nw, text="NAME", font="tr 12",
                 fg="black", bg="white").place(x=200, y=210)
-    lb2 = Label(nw, text="PHONE NUMBER", font="tr 12 bold",
+    lb2 = Label(nw, text="PHONE NUMBER", font="tr 12",
                 fg="black", bg="white").place(x=200, y=250)
-    lb3 = Label(nw, text="TIME SLOT", font="tr 12 bold",
+    lb3 = Label(nw, text="TIME SLOT", font="tr 12 ",
                 fg="black", bg="white").place(x=200, y=300)
     lb4 = Label(nw, text="Ground Location & Details",
-                font="tr 12 bold", fg="black", bg="white").place(x=150, y=350)
+                font="tr 12", fg="black", bg="white").place(x=150, y=350)
     nme = StringVar
     Phn = IntVar
     optTime = ["11AM- 01PM",
@@ -194,12 +211,10 @@ def Book_now():
     Time.set(optTime[0])
     drop1 = OptionMenu(nw, Time, *optTime)
     drop1.place(x=540, y=300, height=15, width=20)
-    optNameAddress = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
-                      "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                      "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                      "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
-                      "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
-                      "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
+    optNameAddress = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053 ",
+                      "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050",
+                      "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East)",
+                      "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
                       ]
     NameAddress = StringVar()
     NameAddress.set(optNameAddress[0])
@@ -237,7 +252,7 @@ def Book_now():
             dbcon.commit()
             # connect.close()
             print("booking done")
-            messagebox.showinfo("BOOKED", "BOOKING SUCCEFUL!!")
+            messagebox.showinfo("BOOKED", "BOOKING SUCCESSFULL!!")
 
     btn2 = Button(nw, text="BOOK", font="tr 10", fg="black", bd=1,
                   bg="#c1bdfd", command=Booked).place(x=400, y=400)
@@ -246,77 +261,240 @@ def Book_now():
 
 def BookingHistory():
     hist = tk.Toplevel()
-    hist.geometry("900x800+90+50")
-    hist.title("BOOK")
+    hist.geometry("900x800")
+    hist.title("BOOKED HISTORY")
     hist.configure(bg="white")
     frame8 = Frame(hist, bg="white").place(x=100, y=80, height=500, width=650)
-    h0 = Label(hist, text="ENTER DETAILS", font="tr 20 bold",
+    h0 = Label(hist, text="ENTER DETAILS", font="tr 20",
                fg="#003b73", bg="white").place(x=300, y=100)
     h1 = Label(hist, text="NAME", font="tr 12 bold",
                fg="black", bg="white").place(x=150, y=210)
-    h2 = Label(hist, text="PHONE NUMBER", font="tr 12 bold",
-               fg="black", bg="white").place(x=400, y=210)
-    h3 = Label(hist, text="Ground Location & Details",
-               font="tr 12 bold", fg="black", bg="white").place(x=150, y=250)
 
-    Booked_Location = ["SmashUp Ground : ADDRESS:- K.B. Patil School, Sector 8,Near Reena Mokal Hospital , Kandivali West, Mumbai, Maharashtra 400067, Phone:8852023645 ",
-                       "J.K turf : ADDRESS :- Near scientific device company, Mumbra, Thane, Maharashtra 400612, Phone: 8254682025",
-                       "Dribble Football Turf : ADDRESS :- Near vivana mall, Thane, Maharashtra 400612, Phone : 8254682025",
-                       "Bhumiputra Maidan : ADDRESS :- Bhumiputra Maidan NEAR RAM MANDIR, DOMBIVILI , Thane, Maharashtra 400612, Phone: 8254682025",
-                       "PHOENIX GROUND : ADDRESS :- Near midc water tank, Kalyan-Dmbivili, Thane, Maharashtra 400612, Phone:8254682025",
-                       "DYANMANDIR GROUND : ADDRESS :- Near Mamta Hospital, model college, Dombivili, Thane, Maharashtra 400612, Phone: 8254682025"
-                       ]  # Idhar locations change kar...
+    # h2 = Label(hist, text="PHONE NUMBER", font="tr 12 bold",
+    #            fg="black", bg="white").place(x=400, y=210)
+    # h3 = Label(hist, text="Ground Location & Details",
+    #            font="tr 12 bold", fg="black", bg="white").place(x=100, y=250)
 
-    Booked_NameAddress = StringVar()
-    Booked_NameAddress.set(Booked_Location[0])
-    drop3 = OptionMenu(hist, Booked_NameAddress, *Booked_Location)
-    drop3.place(x=490, y=250, height=15, width=20)
+    # Booked_Location = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053, Phone:8857023645 ",
+    #                   "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050, Phone: 8254682025",
+    #                   "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East), Phone : 8254682025",
+    #                   "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
+    #                    ]  # Idhar locations change kar...
+
+    # Booked_NameAddress = StringVar()
+    # Booked_NameAddress.set(Booked_Location[0])
+    # drop3 = OptionMenu(hist, Booked_NameAddress, *Booked_Location)
+    # drop3.place(x=490, y=250, height=15, width=20)
 
     name = StringVar()
-    phone = IntVar()
+    # phone = IntVar()
 
     Booked_name = tk.Entry(hist, textvariable=name, bd=2)
     Booked_name.place(x=225, y=210)
-    Booked_phonenumber = tk.Entry(hist, textvariable=phone, bd=2)
-    Booked_phonenumber.place(x=550, y=210)
-    Booked_address = tk.Entry(hist, textvariable=Booked_NameAddress, bd=2)
-    Booked_address.place(x=350, y=250)
 
-    def Booking_History1():
-        BDatestamp = datetime.datetime.now()
+    # Booked_phonenumber = tk.Entry(hist, textvariable=phone, bd=2)
+    # Booked_phonenumber.place(x=550, y=210)
+    # Booked_address = tk.Entry(hist, textvariable=Booked_NameAddress, bd=2)
+    # Booked_address.place(x=350, y=250)
+    def Book_history():
         bname = Booked_name.get()
-        bphone = Booked_phonenumber.get()
-        baddress = Booked_address.get()
-
-        z = dbcon.cursor()
-        z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM GroundBooking WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
-                  (bname, bphone, baddress))
-        found2 = z.fetchone()
-        if found2:
+        y = dbcon.cursor()
+        y.execute('SELECT NAME FROM GroundBooking WHERE NAME=?',(bname,))
+        found1 = y.fetchone()
+        if found1:
             print("Booking found")
             dbcon.cursor()
             a = dbcon.execute('SELECT * FROM GroundBooking')
-            b = Entry(hist, a, fg="black")
-            # b.place(x=130, y=290, width=600, height=100)
-            # b.insert(END,)
             i = 0
             for GroundBooking in a:
                 for j in range(len(GroundBooking)):
                     b = Entry(hist, fg="black")
-                    b.place(x=130, y=290, width=600, height=100)
+                    b.place(x=100, y=290, width=600, height=100)
                     b.insert(END, GroundBooking[j])
                     i = i+1
-            b.place(x=150, y=290)
+            b.place(x=170, y=290)
             dbcon.commit()
-            dbcon.execute("SELECT * FROM student limit 0,10")
         else:
             messagebox.showinfo(
-                'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
-            result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
-                            bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+                'Apologies', 'THERE IS NO SUCH BOOKINGS', command=loggedin)
+    result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black", bd=1, bg="#c1bdfd", command=Book_history).place(x=370, y=200)
+
+    # def Booking_History1():
+    #     #BDatestamp = datetime.datetime.now()
+    #     bname = Booked_name.get()
+    #     # bphone = Booked_phonenumber.get()
+    #     # baddress = Booked_address.get()
+
+    #     z = dbcon.cursor()
+    #     z.execute('SELECT NAME FROM GroundBooking WHERE NAME=?',(bname,))
+    #     found2 = z.fetchone()
+    #     if found2:
+    #         print("Booking found")
+    #         dbcon.cursor()
+    #         a = dbcon.execute('SELECT * FROM GroundBooking')
+    #         b = Entry(hist, a, fg="black")
+    #         # self.fname = Label(self.display, text = str(newval[1]), font = ('tr 14 bold'), bg = 'steelblue',
+    #         #                 fg = 'white')
+    #         b.place(x=130, y=290, width=600, height=100)
+    #         #b.insert(END,GroundBooking[j])
+    #         i = 0
+    #         for GroundBooking in a:
+    #             for j in range(len(GroundBooking)):
+    #                 b = Entry(hist, fg="black")
+    #                 b.place(x=130, y=290, width=600, height=100)
+    #                 b.insert(END, GroundBooking[j])
+    #                 i = i+1
+    #         b.place(x=150, y=290)
+    #         dbcon.commit()
+    #         #dbcon.execute("SELECT * FROM student limit 0,10")
+    #     else:
+    #         messagebox.showinfo(
+    #             'Apologies', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
+    #         result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
+    #                         bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+    # result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
+    #                     bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=200)
+    #     # result = Button(hist, text="BACK", font="tr 10", fg="black", bd=1,
+    #     #           bg="#c1bdfd", command=BookingPage).place(x=460, y=400)
 
 
+# def ViewHistory(): 
+#     root = Tk()
+#     root.title("Booked History")
+#     root.minsize(width=400,height=400)
+#     root.geometry("600x500")
+#     Canvas1 = Canvas(root) 
+#     Canvas1.config(bg="#12a4d9")
+#     Canvas1.pack(expand=True,fill=BOTH)
+#     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
+#     headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
+#     headingLabel = Label(headingFrame1, text="View Booked Grounds", bg='black', fg='white', font = ('Courier',15))
+#     headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
+#     labelFrame = Frame(root,bg='black')
+#     labelFrame.place(relx=0.1,rely=0.3,relwidth=0.8,relheight=0.5)
+#     y = 0.25
+#     Label(labelFrame, text="%-10s%-40s%-30s%-20s"%('Name','Title','Author','Status'),
+#     bg='black',fg='white').place(relx=0.07,rely=0.1)
+#     Label(labelFrame, text = "----------------------------------------------------------------------------",bg='black',fg='white').place (relx=0.05,rely=0.2)
+#     # a = dbcon.execute('SELECT * FROM GroundBooking')
+#     # z = dbcon.cursor()
+#     y = dbcon.cursor()
+    
+#     # y.execute('SELECT Date,Ground_Location FROM GroundBooking WHERE Date=? AND Ground_Location=?',
+#     #               (Timeentry1, Locationentry1))
+#     # getBooks = "select * from GroundBooking"
+#     try:
+#         y.execute('select * from GroundBooking')
+#         found = y.fetchone()
+#         dbcon.commit()
+#         if found:
+#             Label(labelFrame,text="%-10s%-30s%-30s%-20s"%(i[0],i[1],i[2],i[3]) ,bg='black', fg='white').place(relx=0.07,rely=y)
+#             y += 0.1
+#     except:
+#         messagebox.showinfo("Failed to fetch files from database")
+    
+#     quitBtn = Button(root,text="Quit",bg='#f7f1e3', fg='black', command=root.destroy)
+#     quitBtn.place(relx=0.4,rely=0.9, relwidth=0.18,relheight=0.08)
 
+
+    # def searching(given_val):
+    #     if given_val == 'fnames':
+    #         self.butt.place_forget()
+    #         self.butt2.place_forget()
+    #         self.butt3.place_forget()
+    #         self.butt4.place_forget()
+    #         self.butt5.place_forget()
+    #         self.butt6.place_forget()
+    #         self.sign_label.place_forget()
+    #         self.label.place_forget()
+    #         self.label_again.place_forget()
+
+    #         self.labeler = Label(self.look, text = 'Please fill in the players first name: ', font = ('tr 23 bold'))
+    #         self.labeler.place(x=400,y=110)
+
+    #         self.newent = Entry(self.look, font = ('tr 17 bold'))
+    #         self.newent.config(width = 50)
+    #         self.newent.place(x = 350, y = 150)
+
+    #         self.searchit = Button(self.look, text = 'Search', font = ('tr 12 bold'), command = lambda: func())
+    #         self.searchit.place(x = 905, y = 150)
+    #         #I need to restructure my whole function!
+
+    #         def func():
+    #             somesequel = 'SELECT * FROM Players'
+
+    #             theresult = db_cursor.execute(somesequel)
+
+    #             value = self.newent.get()
+    #             #New Function!
+    #             self.display = Frame(self.look, bg = 'steelblue', width = 1366, height = 500)
+    #             #Values would be shown in a tabular format.
+    #             self.display.place(x = 0, y = 200)
+
+    #             self.lb = Label(self.display, text = 'First Name',
+    #                 font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb.place(x = 125, y = 0)
+
+    #             self.lb2 = Label(self.display, text = 'Second Name', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb2.place(x = 325, y = 0)
+
+    #             self.lb2 = Label(self.display, text = 'Age', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb2.place(x = 575, y = 0)
+
+    #             self.lb2 = Label(self.display, text = 'Position', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb2.place(x = 725, y = 0)
+
+    #             self.lb2 = Label(self.display, text = 'Shirt Number', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb2.place(x = 925, y = 0)
+
+    #             self.lb2 = Label(self.display, text = 'Sport Type', font = ('tr 16 bold'), bg = 'steelblue', fg = 'white')
+    #             self.lb2.place(x = 1125, y = 0)
+
+    #             #X positions for labels
+    #             fname_x = 125
+    #             sname_x = 325
+    #             age_x = 575
+    #             pos_x = 725
+    #             shirt_x = 925
+    #             attrib_x = 1125
+
+    #             turn = 0
+    #             count = 0
+    #             for line in theresult:
+    #                 count += 1
+    #                 turn += 1
+    #                 #print(line)
+    #                 newval = list(line)
+
+    #                 basey = 0
+
+    #                 if str(newval[1]).upper() == str(value).upper():
+
+    #                     self.fname = Label(self.display, text = str(newval[1]), font = ('tr 14 bold'), bg = 'steelblue',
+    #                         fg = 'white')
+    #                     self.fname.place(x = fname_x, y = basey + 20 * turn)
+
+    #                     self.sname = Label(self.display, text = str(newval[2]), font = ('tr 14 bold'), bg = 'steelblue',
+    #                         fg = 'white')
+    #                     self.sname.place(x = sname_x, y = basey + 20 * turn)
+
+    #                     self.ages = Label(self.display, text = str(newval[3]), font = ('tr 14 bold'), bg = 'steelblue',
+    #                         fg = 'white')
+    #                     self.ages.place(x = age_x, y = basey + 20 * turn)
+
+    #                     self.positions = Label(self.display, text = str(newval[4]), font = ('tr 14 bold'),
+    #                         bg = 'steelblue', fg = 'white')
+    #                     self.positions.place(x = pos_x, y = basey + 20 * turn)
+
+    #                     self.shirts = Label(self.display, text = str(newval[0]), font = ('tr 14 bold'),
+    #                         bg = 'steelblue', fg = 'white')
+
+    #                     self.shirts.place(x = shirt_x, y = basey + 20 * turn)
+
+    #                     self.attribs = Label(self.display, text = str(newval[5]), font = ('tr 14 bold'),
+    #                         bg = 'steelblue', fg = 'white')
+
+    #                     self.attribs.place(x = attrib_x, y = basey + 20 * turn)
 
 def shopequip():
     os.system('python cart.py')
@@ -368,7 +546,7 @@ def registerinfo():
     RType.place(x=450, y=500)
 
     Back1 = Button(reg, text="Back", font="tr 10", fg="black",
-                   bg="#41B3A3", command=Back_page).place(x=650, y=620)
+                   bg="orange", command=Back_page).place(x=650, y=620)
 
     def registerinfo1():
         print("registerinfo1")
