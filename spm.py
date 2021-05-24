@@ -88,7 +88,7 @@ def logininfo():
 def loggedin(user):
     messagebox.showinfo("LOGIN!!", "LOGIN SUCCEFUL!! Welcome to The Club")
     window2 = Toplevel()
-    window2.geometry("900x900")
+    window2.geometry("900x600")
     window2.configure(bg="orange")
     window2.title("HOME PAGE")
     window2.resizable(False, False)
@@ -101,10 +101,10 @@ def loggedin(user):
     coach.place(x=200, y=250, width=500)
     bturf = tk.Button(window2, text="BOOK TURF", font="tr 20 ", fg="black", bd=4, command=BookingPage)
     bturf.place(x=200, y=350, width=500)
-    bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 ", fg="black", bd=4, command=BookingHistory)
-    bookturf.place(x=200, y=450, width=500)
+    # bookturf = tk.Button(window2, text="VIEW BOOKED TURF", font="tr 20 ", fg="black", bd=4, command=BookingHistory)
+    # bookturf.place(x=200, y=450, width=500)
     shopeq = tk.Button(window2, text="SHOP EQUIPMENT", font="tr 20 ", fg="black", bd=4, command=shopequip)
-    shopeq.place(x=200, y=550, width=500)
+    shopeq.place(x=200, y=450, width=500)
 
 def BookingPage():
     book = tk.Toplevel()
@@ -259,74 +259,74 @@ def Book_now():
     btn3 = Button(nw, text="BACK", font="tr 10", fg="black", bd=1,
                   bg="#c1bdfd", command=BookingPage).place(x=460, y=400)
 
-def BookingHistory():
-    hist = tk.Toplevel()
-    hist.geometry("900x800")
-    hist.title("BOOK")
-    hist.configure(bg="white")
-    frame8 = Frame(hist, bg="white").place(x=100, y=80, height=500, width=650)
-    h0 = Label(hist, text="ENTER DETAILS", font="tr 20 bold",
-               fg="#003b73", bg="white").place(x=300, y=100)
-    h1 = Label(hist, text="NAME", font="tr 12 bold",
-               fg="black", bg="white").place(x=150, y=210)
-    h2 = Label(hist, text="PHONE NUMBER", font="tr 12 bold",
-               fg="black", bg="white").place(x=400, y=210)
-    h3 = Label(hist, text="Ground Location & Details",
-               font="tr 12 bold", fg="black", bg="white").place(x=100, y=250)
+# def BookingHistory():
+#     hist = tk.Toplevel()
+#     hist.geometry("900x800")
+#     hist.title("BOOK")
+#     hist.configure(bg="white")
+#     frame8 = Frame(hist, bg="white").place(x=100, y=80, height=500, width=650)
+#     h0 = Label(hist, text="ENTER DETAILS", font="tr 20 bold",
+#                fg="#003b73", bg="white").place(x=300, y=100)
+#     h1 = Label(hist, text="NAME", font="tr 12 bold",
+#                fg="black", bg="white").place(x=150, y=210)
+#     h2 = Label(hist, text="PHONE NUMBER", font="tr 12 bold",
+#                fg="black", bg="white").place(x=400, y=210)
+#     h3 = Label(hist, text="Ground Location & Details",
+#                font="tr 12 bold", fg="black", bg="white").place(x=100, y=250)
 
-    Booked_Location = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053, Phone:8857023645 ",
-                      "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050, Phone: 8254682025",
-                      "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East), Phone : 8254682025",
-                      "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
-                       ]  # Idhar locations change kar...
+#     Booked_Location = ["Mumbai Football Arena : ADDRESS :- 35, Veera Desai Rd, Azad Nagar, Andheri West, Mumbai, Maharashtra 400053, Phone:8857023645 ",
+#                       "Goalster Sports Arena : ADDRESS :- Gate no.1, St Joseph High School, Manuel Gonsalves Rd, Bandra West, Mumbai, Maharashtra 400050, Phone: 8254682025",
+#                       "Battlefield by Reyes : ADDRESS :- Chintamani Plaza, Near WEH Metro Station, Andheri (East), Phone : 8254682025",
+#                       "Green Spaces Sports Zone : ADDRESS :- Sindhi Society Gymkhana, Off Hemu Kalani Marg, Chembur"
+#                        ]  # Idhar locations change kar...
 
-    Booked_NameAddress = StringVar()
-    Booked_NameAddress.set(Booked_Location[0])
-    drop3 = OptionMenu(hist, Booked_NameAddress, *Booked_Location)
-    drop3.place(x=490, y=250, height=15, width=20)
+#     Booked_NameAddress = StringVar()
+#     Booked_NameAddress.set(Booked_Location[0])
+#     drop3 = OptionMenu(hist, Booked_NameAddress, *Booked_Location)
+#     drop3.place(x=490, y=250, height=15, width=20)
 
-    name = StringVar()
-    phone = IntVar()
+#     name = StringVar()
+#     phone = IntVar()
 
-    Booked_name = tk.Entry(hist, textvariable=name, bd=2)
-    Booked_name.place(x=225, y=210)
-    Booked_phonenumber = tk.Entry(hist, textvariable=phone, bd=2)
-    Booked_phonenumber.place(x=550, y=210)
-    Booked_address = tk.Entry(hist, textvariable=Booked_NameAddress, bd=2)
-    Booked_address.place(x=350, y=250)
+#     Booked_name = tk.Entry(hist, textvariable=name, bd=2)
+#     Booked_name.place(x=225, y=210)
+#     Booked_phonenumber = tk.Entry(hist, textvariable=phone, bd=2)
+#     Booked_phonenumber.place(x=550, y=210)
+#     Booked_address = tk.Entry(hist, textvariable=Booked_NameAddress, bd=2)
+#     Booked_address.place(x=350, y=250)
 
-    def Booking_History1():
-        BDatestamp = datetime.datetime.now()
-        bname = Booked_name.get()
-        bphone = Booked_phonenumber.get()
-        baddress = Booked_address.get()
+#     def Booking_History1():
+#         BDatestamp = datetime.datetime.now()
+#         bname = Booked_name.get()
+#         bphone = Booked_phonenumber.get()
+#         baddress = Booked_address.get()
 
-        z = dbcon.cursor()
-        z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM GroundBooking WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
-                  (bname, bphone, baddress))
-        found2 = z.fetchone()
-        if found2:
-            print("Booking found")
-            dbcon.cursor()
-            a = dbcon.execute('SELECT * FROM GroundBooking')
-            b = Entry(hist, a, fg="black")
-            # b.place(x=130, y=290, width=600, height=100)
-            # b.insert(END,)
-            i = 0
-            for GroundBooking in a:
-                for j in range(len(GroundBooking)):
-                    b = Entry(hist, fg="black")
-                    b.place(x=130, y=290, width=600, height=100)
-                    b.insert(END, GroundBooking[j])
-                    i = i+1
-            b.place(x=150, y=290)
-            dbcon.commit()
-            dbcon.execute("SELECT * FROM student limit 0,10")
-        else:
-            messagebox.showinfo(
-                'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
-            result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
-                            bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
+#         z = dbcon.cursor()
+#         z.execute('SELECT NAME,PHONE_NUMBER,Ground_Location FROM GroundBooking WHERE NAME=? AND PHONE_NUMBER=? AND Ground_Location=?',
+#                   (bname, bphone, baddress))
+#         found2 = z.fetchone()
+#         if found2:
+#             print("Booking found")
+#             dbcon.cursor()
+#             a = dbcon.execute('SELECT * FROM GroundBooking')
+#             b = Entry(hist, a, fg="black")
+#             # b.place(x=130, y=290, width=600, height=100)
+#             # b.insert(END,)
+#             i = 0
+#             for GroundBooking in a:
+#                 for j in range(len(GroundBooking)):
+#                     b = Entry(hist, fg="black")
+#                     b.place(x=130, y=290, width=600, height=100)
+#                     b.insert(END, GroundBooking[j])
+#                     i = i+1
+#             b.place(x=150, y=290)
+#             dbcon.commit()
+#             dbcon.execute("SELECT * FROM student limit 0,10")
+#         else:
+#             messagebox.showinfo(
+#                 'Sorry', 'THERE IS NO SUCH BOOKINGS', command=logininfo)
+#             result = Button(hist, text="SHOW RESULTS", font="tr 10", fg="black",
+#                             bd=1, bg="#c1bdfd", command=Booking_History1).place(x=370, y=500)
 
 
 
